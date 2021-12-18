@@ -48,6 +48,21 @@ export default class MainMenuScene extends Phaser.Scene {
       'assets/bitmapfonts/spacefont.png',
       'assets/bitmapfonts/spacefont.xml'
     );
+    
+    // load xml sheet
+    this.load.atlasXML(
+      'gui',
+      'assets/spritesheets/blueSheet.png', 
+      'assets/json/blueSheet.xml'
+    );
+
+    // load xml sheet
+    this.load.atlasXML(
+      'uiicons',
+      'assets/spritesheets/sheet_black1x.png', 
+      'assets/json/sheet_black1x.xml'
+    );
+
   }
 
   /**
@@ -113,6 +128,158 @@ export default class MainMenuScene extends Phaser.Scene {
     }, this);
 
     this.scene.setActive(false, 'MobileControls'); // Hide mobile controls.
+
+    // create ui buttons
+    // Add shop button image.
+    this.shopButton = this.add.sprite(
+      this.game.config.width * 0.15,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+
+    this.shopButtonIcon = this.add.sprite(
+      this.game.config.width * 0.15,
+      this.game.config.height * 0.9,
+      'uiicons',
+      "cart.png"
+    );
+
+    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown)
+    
+    // Add share button image.
+    this.shareButton = this.add.sprite(
+      this.game.config.width * 0.38,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+
+    this.shareButtonIcon = this.add.sprite(
+      this.game.config.width * 0.38,
+      this.game.config.height * 0.9,
+      'uiicons',
+      'share2.png'
+    );
+
+    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown)
+    
+    // Add login button image.
+    this.loginButton = this.add.sprite(
+      this.game.config.width * 0.61,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+
+    this.loginButtonIcon = this.add.sprite(
+      this.game.config.width * 0.61,
+      this.game.config.height * 0.9,
+      'uiicons',
+      "singleplayer.png"
+    );
+
+    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown)
+    
+    // Add friends button image.
+    this.friendsButton = this.add.sprite(
+      this.game.config.width * 0.84,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+
+    this.friendsButtonIcon = this.add.sprite(
+      this.game.config.width * 0.84,
+      this.game.config.height * 0.9,
+      'uiicons',
+      'multiplayer.png'
+    );
+
+    this.addPointerEvents(this.friendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onFriendsButtonDown)
+    
+    // Add close button image.
+    this.closeButton = this.add.sprite(
+      this.game.config.width * 0.875,
+      this.game.config.height * 0.065,
+      'gui',
+      'blue_button07.png'
+    );
+
+    this.closeButtonIcon = this.add.sprite(
+      this.game.config.width * 0.875,
+      this.game.config.height * 0.065,
+      'uiicons',
+      'cross.png'
+    );
+
+    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onFriendsButtonDown)
+  }
+
+  /**
+   * @description Method called to add button events to the game object.
+   * @function addPointerEvents
+   * @returns {void}
+   */
+  addPointerEvents (obj, texture, overframe, outframe, downframe, upframe, callback) {
+    obj.setInteractive(); // Set button play image to be interactive.
+
+    obj.on('pointerover', function () {
+      obj.setTexture(texture, overframe);
+      this.sounds.button_over.play();
+    }, this);
+    obj.on('pointerout', function () {
+      obj.setTexture(texture, outframe);
+    });
+    obj.on('pointerdown', function () {
+      obj.setTexture(texture, downframe);
+      this.sounds.button_down.play();
+    }, this);
+    obj.on('pointerup', function () {
+      callback();
+      obj.setTexture(texture, upframe);
+    }, this);
+  }
+  
+  /**
+   * @description Method called on shop button down.
+   * @function onShopButtonDown
+   * @returns {void}
+   */
+  onShopButtonDown () {
+    alert("shop button down");
+  }
+  /**
+   * @description Method called on share button down.
+   * @function onShareButtonDown
+   * @returns {void}
+   */
+  onShareButtonDown () {
+    alert("share button down");
+  }
+  /**
+   * @description Method called on login button down.
+   * @function onLoginButtonDown
+   * @returns {void}
+   */
+  onLoginButtonDown () {
+    alert("login button down");
+  }
+  /**
+   * @description Method called on friends button down.
+   * @function onFriendsButtonDown
+   * @returns {void}
+   */
+  onFriendsButtonDown () {
+    alert("friends button down");
+  }
+  /**
+   * @description Method called on Close button down.
+   * @function onCloseButtonDown
+   * @returns {void}
+   */
+  onCloseButtonDown () {
+    alert("close button down");
   }
 
   /**
