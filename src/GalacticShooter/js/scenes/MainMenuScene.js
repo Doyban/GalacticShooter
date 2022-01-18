@@ -43,26 +43,23 @@ export default class MainMenuScene extends Phaser.Scene {
     this.load.image('button_restart_down_image', 'assets/images/button_restart_down.png');
     this.load.image('button_restart_hover_image', 'assets/images/button_restart_hover.png');
 
-    // Load bitmaps.
-    this.load.bitmapFont('space_font',
-      'assets/bitmapfonts/spacefont.png',
-      'assets/bitmapfonts/spacefont.xml'
-    );
-    
-    // load xml sheet
+    // Load XML sheets.
     this.load.atlasXML(
       'gui',
       'assets/spritesheets/blueSheet.png', 
       'assets/json/blueSheet.xml'
     );
-
-    // load xml sheet
     this.load.atlasXML(
       'uiicons',
       'assets/spritesheets/sheet_black1x.png', 
       'assets/json/sheet_black1x.xml'
     );
-
+    
+    // Load bitmaps.
+    this.load.bitmapFont('space_font',
+      'assets/bitmapfonts/spacefont.png',
+      'assets/bitmapfonts/spacefont.xml'
+    );
   }
 
   /**
@@ -129,75 +126,6 @@ export default class MainMenuScene extends Phaser.Scene {
 
     this.scene.setActive(false, 'MobileControls'); // Hide mobile controls.
 
-    // create ui buttons
-    // Add shop button image.
-    this.shopButton = this.add.sprite(
-      this.game.config.width * 0.15,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-
-    this.shopButtonIcon = this.add.sprite(
-      this.game.config.width * 0.15,
-      this.game.config.height * 0.9,
-      'uiicons',
-      "cart.png"
-    );
-
-    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown)
-    
-    // Add share button image.
-    this.shareButton = this.add.sprite(
-      this.game.config.width * 0.38,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-
-    this.shareButtonIcon = this.add.sprite(
-      this.game.config.width * 0.38,
-      this.game.config.height * 0.9,
-      'uiicons',
-      'share2.png'
-    );
-
-    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown)
-    
-    // Add login button image.
-    this.loginButton = this.add.sprite(
-      this.game.config.width * 0.61,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-
-    this.loginButtonIcon = this.add.sprite(
-      this.game.config.width * 0.61,
-      this.game.config.height * 0.9,
-      'uiicons',
-      "singleplayer.png"
-    );
-
-    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown)
-    
-    // Add friends button image.
-    this.friendsButton = this.add.sprite(
-      this.game.config.width * 0.84,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-
-    this.friendsButtonIcon = this.add.sprite(
-      this.game.config.width * 0.84,
-      this.game.config.height * 0.9,
-      'uiicons',
-      'multiplayer.png'
-    );
-
-    this.addPointerEvents(this.friendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onFriendsButtonDown)
-    
     // Add close button image.
     this.closeButton = this.add.sprite(
       this.game.config.width * 0.875,
@@ -205,7 +133,6 @@ export default class MainMenuScene extends Phaser.Scene {
       'gui',
       'blue_button07.png'
     );
-
     this.closeButtonIcon = this.add.sprite(
       this.game.config.width * 0.875,
       this.game.config.height * 0.065,
@@ -213,7 +140,68 @@ export default class MainMenuScene extends Phaser.Scene {
       'cross.png'
     );
 
-    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onFriendsButtonDown)
+    // Add invite friends button image.
+    this.inviteFriendsButton = this.add.sprite(
+      this.game.config.width * 0.84,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+    this.inviteFriendsButtonIcon = this.add.sprite(
+      this.game.config.width * 0.84,
+      this.game.config.height * 0.9,
+      'uiicons',
+      'multiplayer.png'
+    );
+
+     // Add login button image.
+     this.loginButton = this.add.sprite(
+      this.game.config.width * 0.61,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+    this.loginButtonIcon = this.add.sprite(
+      this.game.config.width * 0.61,
+      this.game.config.height * 0.9,
+      'uiicons',
+      "singleplayer.png"
+    );
+
+    // Add share button image.
+    this.shareButton = this.add.sprite(
+      this.game.config.width * 0.38,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+    this.shareButtonIcon = this.add.sprite(
+      this.game.config.width * 0.38,
+      this.game.config.height * 0.9,
+      'uiicons',
+      'share2.png'
+    );
+
+    // Add shop button image.
+    this.shopButton = this.add.sprite(
+      this.game.config.width * 0.15,
+      this.game.config.height * 0.9,
+      'gui',
+      'blue_button07.png'
+    );
+    this.shopButtonIcon = this.add.sprite(
+      this.game.config.width * 0.15,
+      this.game.config.height * 0.9,
+      'uiicons',
+      "cart.png"
+    );
+
+    // Add pointer events with its appropriate textures, and audios.
+    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown)
+    this.addPointerEvents(this.inviteFriendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onInviteFriendsButtonDown)
+    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown)
+    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown);
+    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown);
   }
 
   /**
@@ -240,6 +228,42 @@ export default class MainMenuScene extends Phaser.Scene {
       obj.setTexture(texture, upframe);
     }, this);
   }
+
+  /**
+   * @description Method called on Close button down.
+   * @function onCloseButtonDown
+   * @returns {void}
+   */
+   onCloseButtonDown () {
+    alert("close button down");
+  }
+
+  /**
+   * @description Method called on friends button down.
+   * @function onInviteFriendsButtonDown
+   * @returns {void}
+   */
+   onInviteFriendsButtonDown () {
+    alert("invite friends button down");
+  }
+
+  /**
+   * @description Method called on login button down.
+   * @function onLoginButtonDown
+   * @returns {void}
+   */
+   onLoginButtonDown () {
+    alert("login button down");
+  }
+
+  /**
+   * @description Method called on share button down.
+   * @function onShareButtonDown
+   * @returns {void}
+   */
+   onShareButtonDown () {
+    alert("share button down");
+  }
   
   /**
    * @description Method called on shop button down.
@@ -249,39 +273,7 @@ export default class MainMenuScene extends Phaser.Scene {
   onShopButtonDown () {
     alert("shop button down");
   }
-  /**
-   * @description Method called on share button down.
-   * @function onShareButtonDown
-   * @returns {void}
-   */
-  onShareButtonDown () {
-    alert("share button down");
-  }
-  /**
-   * @description Method called on login button down.
-   * @function onLoginButtonDown
-   * @returns {void}
-   */
-  onLoginButtonDown () {
-    alert("login button down");
-  }
-  /**
-   * @description Method called on friends button down.
-   * @function onFriendsButtonDown
-   * @returns {void}
-   */
-  onFriendsButtonDown () {
-    alert("friends button down");
-  }
-  /**
-   * @description Method called on Close button down.
-   * @function onCloseButtonDown
-   * @returns {void}
-   */
-  onCloseButtonDown () {
-    alert("close button down");
-  }
-
+  
   /**
    * @description Method invoked all the time during the game.
    * @function update

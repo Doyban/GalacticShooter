@@ -9,8 +9,7 @@
     "dev": "webpack --hot",
     "watch": "webpack --watch"
   },
-  "author": "Daniel Danielecki",
-  "license": "ISC",
+  "author": "Doyban",
   "dependencies": {
     "phaser": "^3.19.0"
   },
