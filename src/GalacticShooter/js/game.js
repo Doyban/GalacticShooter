@@ -5,6 +5,7 @@ import GameOverScene from './scenes/GameOverScene';
 import {
   MobileControlsScene
 } from './scenes/MobileControlsScene';
+import { ShopScene } from './scenes/ShopScene';
 
 /**
  * @class Game
@@ -35,7 +36,8 @@ export default class Game extends Phaser.Game {
         MainMenuScene,
         MainScene,
         GameOverScene,
-        MobileControlsScene
+        MobileControlsScene,
+        ShopScene
       ],
       input: {
         activePointers: 6,

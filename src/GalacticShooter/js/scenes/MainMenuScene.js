@@ -197,11 +197,11 @@ export default class MainMenuScene extends Phaser.Scene {
     );
 
     // Add pointer events with its appropriate textures, and audios.
-    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown)
-    this.addPointerEvents(this.inviteFriendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onInviteFriendsButtonDown)
-    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown)
-    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown);
-    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown);
+    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown.bind(this))
+    this.addPointerEvents(this.inviteFriendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onInviteFriendsButtonDown.bind(this))
+    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown.bind(this))
+    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown.bind(this));
+    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown.bind(this));
   }
 
   /**
@@ -272,6 +272,7 @@ export default class MainMenuScene extends Phaser.Scene {
    */
   onShopButtonDown () {
     alert("shop button down");
+    this.scene.start('ShopScene');
   }
   
   /**
