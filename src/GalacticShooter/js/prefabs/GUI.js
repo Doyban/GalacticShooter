@@ -1,3 +1,5 @@
+import { scalePercX, scalePercY } from "../game";
+
 /**
  * @class GUI
  * @description Define Graphical User Interfact (GUI).
@@ -13,13 +15,13 @@ export default class GUI {
     let shield_text = {
       desktop: {
         x: scene.game.config.width * 0.80,
-        y: scene.game.config.width * 0.05,
+        y: scene.game.config.height * 0.05,
         fontSize: 30
       },
       mobile: {
-        x: scene.game.config.width * 0.85,
-        y: scene.game.config.width * 0.05,
-        fontSize: 55
+        x: scene.game.config.width * 0.95,
+        y: scene.game.config.height * 0.05,
+        fontSize: 25 * ((scalePercX + scalePercY) * 0.5)
       }
     };
 
@@ -27,13 +29,13 @@ export default class GUI {
     let score_text = {
       desktop: {
         x: scene.game.config.width * 0.20,
-        y: scene.game.config.width * 0.05,
+        y: scene.game.config.height * 0.05,
         fontSize: 30
       },
       mobile: {
-        x: scene.game.config.width * 0.15,
-        y: scene.game.config.width * 0.05,
-        fontSize: 55
+        x: scene.game.config.width * 0.05,
+        y: scene.game.config.height * 0.05,
+        fontSize: 25 * ((scalePercX + scalePercY) * 0.5)
       }
     };
 
@@ -50,7 +52,7 @@ export default class GUI {
 
     // Set up shield text properties.
     this.shield_text = scene.add.dynamicBitmapText(shield_text.x, shield_text.y, 'space_font', 'Shield:  ' + this.health, shield_text.fontSize);
-    this.shield_text.setOrigin(0.5);
+    this.shield_text.setOrigin(1, 0.5);
     group.add(this.shield_text);
 
     this.score = 0; // Set up default score.
@@ -58,7 +60,7 @@ export default class GUI {
 
     // Set up score text properties.
     this.score_text = scene.add.dynamicBitmapText(score_text.x, score_text.y, 'space_font', 'Score:  ' + this.score, score_text.fontSize);
-    this.score_text.setOrigin(0.5);
+    this.score_text.setOrigin(0, 0.5);
     group.add(this.score_text);
   }
 

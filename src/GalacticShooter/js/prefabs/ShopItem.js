@@ -1,3 +1,4 @@
+import { scalePercX, scalePercY } from "../game";
 
 /**
  * @class ShopItem
@@ -28,6 +29,10 @@ export class ShopItem {
     this.createScoreText();
     this.createScoreXText();
     this.createScoreMultiplierText();
+
+    [this.background, this.gameScoreText, this.gameScoreMultiplierText, this.gameScoreTextX].forEach(value => {
+      value.setScale(scalePercX, scalePercY);
+    });
   }
 
   /**
@@ -55,7 +60,7 @@ export class ShopItem {
    * @description Create Score text of the ShopItem.
    */
   createScoreText() {
-    this.gameScoreText = this._game.add.text(this.position.x, this.position.y - 15, 'Score', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }); // Set title text properties.
+    this.gameScoreText = this._game.add.text(this.position.x, (this.position.y - 15 * scalePercY), 'Score', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' }); // Set title text properties.
     this.gameScoreText.setOrigin(0.5);
     this.gameScoreText.stroke = '#627577';
     this.gameScoreText.strokeThickness = 2.2;
@@ -68,7 +73,7 @@ export class ShopItem {
   createScoreXText() {
     this.gameScoreText.autoRound = true;
     this.gameScoreText.lineSpacing = 5;
-    this.gameScoreTextX = this._game.add.text(this.position.x - 10, this.position.y + 5, 'X', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+    this.gameScoreTextX = this._game.add.text(this.position.x - (10 * scalePercX), this.position.y + (8 * scalePercY), 'x', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
     this.gameScoreTextX.setOrigin(0.5);
     this.gameScoreTextX.stroke = '#627577';
     this.gameScoreTextX.strokeThickness = 3;
@@ -79,7 +84,7 @@ export class ShopItem {
    * @description Create "[VALUE_IN_THE_ARRAY]" text before "Score x".
    */
   createScoreMultiplierText() {
-    this.gameScoreMultiplierText = this._game.add.text(this.position.x + 10, this.position.y, this.multiplier, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' });
+    this.gameScoreMultiplierText = this._game.add.text(this.position.x + (10 * scalePercX), this.position.y + (8 * scalePercY), this.multiplier, { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif'});
     this.gameScoreMultiplierText.setOrigin(0.5);
     this.gameScoreMultiplierText.stroke = '#627577';
     this.gameScoreMultiplierText.strokeThickness = 3;

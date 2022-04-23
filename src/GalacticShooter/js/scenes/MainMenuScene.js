@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { scalePercX, scalePercY } from '../game';
 import ScrollingBackground from '../prefabs/ScrollingBackground';
 
 /**
@@ -69,6 +70,10 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   create() {
+
+    // add buttons Array
+    this.scalingAssets = [];
+
     // Add sounds effects for buttons.
     this.sounds = {
       button_down: this.sound.add('button_down_audio'),
@@ -76,7 +81,7 @@ export default class MainMenuScene extends Phaser.Scene {
     };
 
     // Add title.
-    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, 150, 'space_font', 'MENU', 78); // Set title text properties.
+    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, 150, 'space_font', 'MENU', 58 * ((scalePercX + scalePercY) * 0.5)); // Set title text properties.
     this.title.setOrigin(0.5); // Center title.
 
     // Add scrolling background to the menu.
@@ -97,7 +102,7 @@ export default class MainMenuScene extends Phaser.Scene {
 
     // Scale retstart play and title accordingly to the desired platform.
     if (!this.game.device.os.desktop) {
-      this.button_play.setScale(1.5);
+      this.button_play.setScale(scalePercX, scalePercY);
     } else {
       this.title.setFontSize(40);
       this.title.setPosition(this.game.config.width / 2, 100);
@@ -195,6 +200,10 @@ export default class MainMenuScene extends Phaser.Scene {
       'uiicons',
       "cart.png"
     );
+
+    // scaling the assets that are need to be
+    this.scalingAssets.push(this.closeButton, this.closeButtonIcon, this.inviteFriendsButton, this.inviteFriendsButtonIcon, this.loginButton, this.loginButtonIcon, this.shareButton, this.shareButtonIcon, this.shopButton, this.shopButtonIcon);
+    this.scalingAssets.forEach(button => button.setScale(scalePercX, scalePercY));
 
     // Add pointer events with its appropriate textures, and audios.
     this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown.bind(this))

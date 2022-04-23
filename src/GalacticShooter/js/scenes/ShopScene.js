@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { scalePercX, scalePercY } from "../game";
 import ScrollingBackground from "../prefabs/ScrollingBackground";
 import { ShopItem } from "../prefabs/ShopItem";
 
@@ -61,6 +62,8 @@ export class ShopScene extends Phaser.Scene {
         );
         this.closeButton.setInteractive();
         this.closeButton.on("pointerup", this._onCloseButton, this);
+
+        [this.closeButton, this.closeButtonIcon].forEach((gameObject) => gameObject.setScale(scalePercX, scalePercY));
     }
 
     /**
@@ -75,7 +78,7 @@ export class ShopScene extends Phaser.Scene {
        let mulitpliers = [2, 3, 4, 6]; // Text "Score x[VALUE_IN_THIS_ARRAY]".
        // Add ShopItems to the backgroundLayers array.
        for (let i = 0; i < count; i++) {
-           this.backgroundLayers.push(new ShopItem(this, {x : (this.game.config.width * 0.5) + positions[i][0], y : (this.game.config.height * 0.5) + positions[i][1]}, mulitpliers[i]));
+           this.backgroundLayers.push(new ShopItem(this, {x : (this.game.config.width * 0.5) + positions[i][0] * scalePercX, y : (this.game.config.height * 0.5) + positions[i][1] * scalePercY}, mulitpliers[i]));
        }
     }
 

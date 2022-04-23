@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { scalePercX, scalePercY } from '../game';
 import ScrollingBackground from '../prefabs/ScrollingBackground';
 
 /**
@@ -66,7 +67,7 @@ export default class GameOverScene extends Phaser.Scene {
 
     // Scale retstart button and title accordingly to the desired platform.
     if (!this.game.device.os.desktop) {
-      this.btn_restart.setScale(1.5);
+      this.btn_restart.setScale(scalePercX, scalePercY);
     } else {
       this.title.setFontSize(40);
       this.title.setPosition(this.game.config.width / 2, 100);
