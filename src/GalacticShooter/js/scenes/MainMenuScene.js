@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { scalePercX, scalePercY } from '../game';
 import ScrollingBackground from '../prefabs/ScrollingBackground';
+import { scalePercX, scalePercY } from '../game';
 
 /**
  * @class MainMenuScene
@@ -47,15 +47,15 @@ export default class MainMenuScene extends Phaser.Scene {
     // Load XML sheets.
     this.load.atlasXML(
       'gui',
-      'assets/spritesheets/blueSheet.png', 
+      'assets/spritesheets/blueSheet.png',
       'assets/json/blueSheet.xml'
     );
     this.load.atlasXML(
       'uiicons',
-      'assets/spritesheets/sheet_black1x.png', 
+      'assets/spritesheets/sheet_black1x.png',
       'assets/json/sheet_black1x.xml'
     );
-    
+
     // Load bitmaps.
     this.load.bitmapFont('space_font',
       'assets/bitmapfonts/spacefont.png',
@@ -70,9 +70,8 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   create() {
-
-    // add buttons Array
-    this.scalingAssets = [];
+    // Add empty array for buttons creating the MainMenuScene.
+    this.menuButtons = [];
 
     // Add sounds effects for buttons.
     this.sounds = {
@@ -159,8 +158,8 @@ export default class MainMenuScene extends Phaser.Scene {
       'multiplayer.png'
     );
 
-     // Add login button image.
-     this.loginButton = this.add.sprite(
+    // Add login button image.
+    this.loginButton = this.add.sprite(
       this.game.config.width * 0.61,
       this.game.config.height * 0.9,
       'gui',
@@ -201,9 +200,9 @@ export default class MainMenuScene extends Phaser.Scene {
       "cart.png"
     );
 
-    // scaling the assets that are need to be
-    this.scalingAssets.push(this.closeButton, this.closeButtonIcon, this.inviteFriendsButton, this.inviteFriendsButtonIcon, this.loginButton, this.loginButtonIcon, this.shareButton, this.shareButtonIcon, this.shopButton, this.shopButtonIcon);
-    this.scalingAssets.forEach(button => button.setScale(scalePercX, scalePercY));
+    // Scale buttons creating the MainMenuScene.
+    this.menuButtons.push(this.closeButton, this.closeButtonIcon, this.inviteFriendsButton, this.inviteFriendsButtonIcon, this.loginButton, this.loginButtonIcon, this.shareButton, this.shareButtonIcon, this.shopButton, this.shopButtonIcon);
+    this.menuButtons.forEach(button => button.setScale(scalePercX, scalePercY));
 
     // Add pointer events with its appropriate textures, and audios.
     this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown.bind(this))
@@ -218,7 +217,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @function addPointerEvents
    * @returns {void}
    */
-  addPointerEvents (obj, texture, overframe, outframe, downframe, upframe, callback) {
+  addPointerEvents(obj, texture, overframe, outframe, downframe, upframe, callback) {
     obj.setInteractive(); // Set button play image to be interactive.
 
     obj.on('pointerover', function () {
@@ -243,7 +242,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @function onCloseButtonDown
    * @returns {void}
    */
-   onCloseButtonDown () {
+  onCloseButtonDown() {
     alert("close button down");
   }
 
@@ -252,7 +251,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @function onInviteFriendsButtonDown
    * @returns {void}
    */
-   onInviteFriendsButtonDown () {
+  onInviteFriendsButtonDown() {
     alert("invite friends button down");
   }
 
@@ -261,7 +260,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @function onLoginButtonDown
    * @returns {void}
    */
-   onLoginButtonDown () {
+  onLoginButtonDown() {
     alert("login button down");
   }
 
@@ -270,20 +269,20 @@ export default class MainMenuScene extends Phaser.Scene {
    * @function onShareButtonDown
    * @returns {void}
    */
-   onShareButtonDown () {
+  onShareButtonDown() {
     alert("share button down");
   }
-  
+
   /**
    * @description Method called on shop button down.
    * @function onShopButtonDown
    * @returns {void}
    */
-  onShopButtonDown () {
+  onShopButtonDown() {
     alert("shop button down");
     this.scene.start('ShopScene');
   }
-  
+
   /**
    * @description Method invoked all the time during the game.
    * @function update

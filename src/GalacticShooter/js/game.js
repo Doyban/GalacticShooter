@@ -7,8 +7,8 @@ import {
 } from './scenes/MobileControlsScene';
 import { ShopScene } from './scenes/ShopScene';
 
-export let scalePercX = (window.innerWidth/360) * 0.9;
-export let scalePercY = (window.innerHeight/640) * 0.9;
+export let scalePercX = window.innerWidth / 360 * 0.9;
+export let scalePercY = window.innerHeight / 640 * 0.9;
 /**
  * @class Game
  * @description Define core game settings.
@@ -33,7 +33,7 @@ export default class Game extends Phaser.Game {
           debug: false // To view zones change to 'true'.
         }
       },
-      // Add phaser scenes.
+      // Add phaser scenes (order is important).
       scene: [
         MainMenuScene,
         MainScene,
@@ -54,8 +54,8 @@ export default class Game extends Phaser.Game {
     if (this.device.os.desktop) {
       this.config.width = 360;
       this.config.height = 640;
-      scalePercX = this.device.os.desktop? 1 : scalePercX;
-      scalePercY = this.device.os.desktop? 1 : scalePercY;
+      scalePercX = this.device.os.desktop ? 1 : scalePercX;
+      scalePercY = this.device.os.desktop ? 1 : scalePercY;
     }
   }
 }

@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { scalePercX, scalePercY } from '../game';
 import ScrollingBackground from '../prefabs/ScrollingBackground';
+import { scalePercX, scalePercY } from '../game';
 
 /**
  * @class GameOverScene

@@ -21,7 +21,7 @@ export default class GUI {
       mobile: {
         x: scene.game.config.width * 0.95,
         y: scene.game.config.height * 0.05,
-        fontSize: 25 * ((scalePercX + scalePercY) * 0.5)
+        fontSize: 25 * (scalePercX + scalePercY) * 0.5
       }
     };
 
@@ -35,7 +35,7 @@ export default class GUI {
       mobile: {
         x: scene.game.config.width * 0.05,
         y: scene.game.config.height * 0.05,
-        fontSize: 25 * ((scalePercX + scalePercY) * 0.5)
+        fontSize: 25 * (scalePercX + scalePercY) * 0.5
       }
     };
 
