@@ -14,9 +14,9 @@ export default class GUI {
     // Properties for shield text accordingly to the desired platform.
     let shield_text = {
       desktop: {
-        x: scene.game.config.width * 0.80,
+        x: scene.game.config.width * 0.9,
         y: scene.game.config.height * 0.05,
-        fontSize: 30
+        fontSize: 25 * (scalePercX + scalePercY) * 0.5
       },
       mobile: {
         x: scene.game.config.width * 0.95,
@@ -28,9 +28,9 @@ export default class GUI {
     // Properties for score text accordingly to the desired platform.
     let score_text = {
       desktop: {
-        x: scene.game.config.width * 0.20,
+        x: scene.game.config.width * 0.1,
         y: scene.game.config.height * 0.05,
-        fontSize: 30
+        fontSize: 25 * (scalePercX + scalePercY) * 0.5
       },
       mobile: {
         x: scene.game.config.width * 0.05,

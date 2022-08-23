@@ -45,7 +45,7 @@ export default class GameOverScene extends Phaser.Scene {
     };
 
     // Add title.
-    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, 150, 'space_font', 'GAME OVER', 88);
+    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, this.game.config.height * 0.1, 'space_font', 'GAME OVER', 88);
     this.title.setOrigin(0.5); // Center title.
     this.title.visible = false; // Make title invisible.
 
@@ -95,6 +95,52 @@ export default class GameOverScene extends Phaser.Scene {
       this.btn_restart.setTexture('button_restart_image');
       this.scene.start('MainScene');
     }, this);
+    
+  // Add share button image.
+  this.shareButton = this.add.sprite(
+    this.game.config.width * 0.35,
+    this.game.config.height * 0.85,
+    'gui',
+    'blue_button07.png'
+  );
+
+  this.shareButtonIcon = this.add.sprite(
+    this.game.config.width * 0.35,
+    this.game.config.height * 0.85,
+    'uiicons',
+    "share2.png"
+  );
+
+  this.shareButton.setInteractive();
+
+  // Add pointer events with its appropriate textures, and audios.
+  this.shareButton.on('pointerup', function () {
+    this.sounds.button_down.play();
+    alert("share button clicked ");
+  }, this);
+
+  // Add home button image.
+  this.homeButton = this.add.sprite(
+    this.game.config.width * 0.65,
+    this.game.config.height * 0.85,
+    'gui',
+    'blue_button07.png'
+  );
+
+  this.homeButtonIcon = this.add.sprite(
+    this.game.config.width * 0.65,
+    this.game.config.height * 0.85,
+    'uiicons',
+    "home.png"
+  );
+
+  this.homeButton.setInteractive();
+
+  // Add pointer events with its appropriate textures, and audios.
+  this.homeButton.on('pointerup', () => {
+    this.sounds.button_down.play();
+    this.scene.start('MainMenuScene');
+  }, this);
 
     // Smoothly show game over title with restart button.
     this.cameras.main.flash(5000, 0, 0, 0, true, () => {
