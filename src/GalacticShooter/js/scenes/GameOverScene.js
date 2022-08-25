@@ -110,7 +110,8 @@ export default class GameOverScene extends Phaser.Scene {
     'uiicons',
     "share2.png"
   );
-
+  this.shareButton.setScale(scalePercX, scalePercY);
+  this.shareButtonIcon.setScale(scalePercX, scalePercY);
   this.shareButton.setInteractive();
 
   // Add pointer events with its appropriate textures, and audios.
@@ -126,14 +127,15 @@ export default class GameOverScene extends Phaser.Scene {
     'gui',
     'blue_button07.png'
   );
-
   this.homeButtonIcon = this.add.sprite(
     this.game.config.width * 0.65,
     this.game.config.height * 0.85,
     'uiicons',
     "home.png"
-  );
-
+    );
+    
+  this.homeButton.setScale(scalePercX, scalePercY);
+  this.homeButtonIcon.setScale(scalePercX, scalePercY);
   this.homeButton.setInteractive();
 
   // Add pointer events with its appropriate textures, and audios.
