@@ -1,7 +1,7 @@
 {
   "name": "GalacticShooter",
   "version": "1.0.0",
-  "description": "climbing the infinite platform.",
+  "description": "Minimalistic Galactic Shooting Game",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
