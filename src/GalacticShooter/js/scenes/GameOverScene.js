@@ -95,54 +95,30 @@ export default class GameOverScene extends Phaser.Scene {
       this.btn_restart.setTexture('button_restart_image');
       this.scene.start('MainScene');
     }, this);
-    
-  // Add share button image.
-  this.shareButton = this.add.sprite(
-    this.game.config.width * 0.35,
-    this.game.config.height * 0.85,
-    'gui',
-    'blue_button07.png'
-  );
 
-  this.shareButtonIcon = this.add.sprite(
-    this.game.config.width * 0.35,
-    this.game.config.height * 0.85,
-    'uiicons',
-    "share2.png"
-  );
-  this.shareButton.setScale(scalePercX, scalePercY);
-  this.shareButtonIcon.setScale(scalePercX, scalePercY);
-  this.shareButton.setInteractive();
-
-  // Add pointer events with its appropriate textures, and audios.
-  this.shareButton.on('pointerup', function () {
-    this.sounds.button_down.play();
-    alert("share button clicked ");
-  }, this);
-
-  // Add home button image.
-  this.homeButton = this.add.sprite(
-    this.game.config.width * 0.65,
-    this.game.config.height * 0.85,
-    'gui',
-    'blue_button07.png'
-  );
-  this.homeButtonIcon = this.add.sprite(
-    this.game.config.width * 0.65,
-    this.game.config.height * 0.85,
-    'uiicons',
-    "home.png"
+    // Add home button image.
+    this.homeButton = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.85,
+      'gui',
+      'blue_button07.png'
     );
-    
-  this.homeButton.setScale(scalePercX, scalePercY);
-  this.homeButtonIcon.setScale(scalePercX, scalePercY);
-  this.homeButton.setInteractive();
+    this.homeButtonIcon = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.85,
+      'uiicons',
+      "home.png"
+    );
 
-  // Add pointer events with its appropriate textures, and audios.
-  this.homeButton.on('pointerup', () => {
-    this.sounds.button_down.play();
-    this.scene.start('MainMenuScene');
-  }, this);
+    this.homeButton.setScale(scalePercX, scalePercY);
+    this.homeButtonIcon.setScale(scalePercX, scalePercY);
+    this.homeButton.setInteractive();
+
+    // Add pointer events with its appropriate textures, and audios.
+    this.homeButton.on('pointerup', () => {
+      this.sounds.button_down.play();
+      this.scene.start('MainMenuScene');
+    }, this);
 
     // Smoothly show game over title with restart button.
     this.cameras.main.flash(5000, 0, 0, 0, true, () => {

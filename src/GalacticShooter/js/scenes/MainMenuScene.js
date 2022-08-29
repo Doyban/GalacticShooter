@@ -144,72 +144,12 @@ export default class MainMenuScene extends Phaser.Scene {
       'cross.png'
     );
 
-    // Add invite friends button image.
-    this.inviteFriendsButton = this.add.sprite(
-      this.game.config.width * 0.84,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-    this.inviteFriendsButtonIcon = this.add.sprite(
-      this.game.config.width * 0.84,
-      this.game.config.height * 0.9,
-      'uiicons',
-      'multiplayer.png'
-    );
-
-    // Add login button image.
-    this.loginButton = this.add.sprite(
-      this.game.config.width * 0.61,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-    this.loginButtonIcon = this.add.sprite(
-      this.game.config.width * 0.61,
-      this.game.config.height * 0.9,
-      'uiicons',
-      "singleplayer.png"
-    );
-
-    // Add share button image.
-    this.shareButton = this.add.sprite(
-      this.game.config.width * 0.38,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-    this.shareButtonIcon = this.add.sprite(
-      this.game.config.width * 0.38,
-      this.game.config.height * 0.9,
-      'uiicons',
-      'share2.png'
-    );
-
-    // Add shop button image.
-    this.shopButton = this.add.sprite(
-      this.game.config.width * 0.15,
-      this.game.config.height * 0.9,
-      'gui',
-      'blue_button07.png'
-    );
-    this.shopButtonIcon = this.add.sprite(
-      this.game.config.width * 0.15,
-      this.game.config.height * 0.9,
-      'uiicons',
-      "cart.png"
-    );
-
     // Scale buttons creating the MainMenuScene.
-    this.menuButtons.push(this.closeButton, this.closeButtonIcon, this.inviteFriendsButton, this.inviteFriendsButtonIcon, this.loginButton, this.loginButtonIcon, this.shareButton, this.shareButtonIcon, this.shopButton, this.shopButtonIcon);
+    this.menuButtons.push(this.closeButton, this.closeButtonIcon);
     this.menuButtons.forEach(button => button.setScale(scalePercX, scalePercY));
 
     // Add pointer events with its appropriate textures, and audios.
-    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown.bind(this))
-    this.addPointerEvents(this.inviteFriendsButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onInviteFriendsButtonDown.bind(this))
-    this.addPointerEvents(this.loginButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onLoginButtonDown.bind(this))
-    this.addPointerEvents(this.shareButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShareButtonDown.bind(this));
-    this.addPointerEvents(this.shopButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onShopButtonDown.bind(this));
+    this.addPointerEvents(this.closeButton, "gui", "blue_button07.png", "blue_button08.png", "blue_button09.png", "blue_button10.png", this.onCloseButtonDown.bind(this));
   }
 
   /**
@@ -243,44 +183,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onCloseButtonDown() {
-    alert("close button down");
-  }
-
-  /**
-   * @description Method called on friends button down.
-   * @function onInviteFriendsButtonDown
-   * @returns {void}
-   */
-  onInviteFriendsButtonDown() {
-    alert("invite friends button down");
-  }
-
-  /**
-   * @description Method called on login button down.
-   * @function onLoginButtonDown
-   * @returns {void}
-   */
-  onLoginButtonDown() {
-    alert("login button down");
-  }
-
-  /**
-   * @description Method called on share button down.
-   * @function onShareButtonDown
-   * @returns {void}
-   */
-  onShareButtonDown() {
-    alert("share button down");
-  }
-
-  /**
-   * @description Method called on shop button down.
-   * @function onShopButtonDown
-   * @returns {void}
-   */
-  onShopButtonDown() {
-    alert("shop button down");
-    this.scene.start('ShopScene');
+    window.open("https://itch.io/");
   }
 
   /**

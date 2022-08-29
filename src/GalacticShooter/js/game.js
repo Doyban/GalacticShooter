@@ -5,7 +5,6 @@ import GameOverScene from './scenes/GameOverScene';
 import {
   MobileControlsScene
 } from './scenes/MobileControlsScene';
-import { ShopScene } from './scenes/ShopScene';
 
 export let scalePercX = window.innerWidth / 360 * 0.9;
 export let scalePercY = window.innerHeight / 640 * 0.9;
@@ -39,7 +38,6 @@ export default class Game extends Phaser.Game {
         MainScene,
         GameOverScene,
         MobileControlsScene,
-        ShopScene
       ],
       input: {
         activePointers: 6,
