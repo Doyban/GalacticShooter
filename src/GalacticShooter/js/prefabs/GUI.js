@@ -82,7 +82,7 @@ export default class GUI {
    * @function setScore
    */
   setScore(value) {
-    this.score_buffer += value;
+    this.score_buffer += value * parseInt(localStorage.scoreRate);
   }
 
   /**
