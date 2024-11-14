@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import MainScene from './scenes/MainScene';
 import MainMenuScene from './scenes/MainMenuScene';
 import GameOverScene from './scenes/GameOverScene';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import {
   MobileControlsScene
 } from './scenes/MobileControlsScene';
@@ -57,6 +59,22 @@ export default class Game extends Phaser.Game {
       scalePercX = this.device.os.desktop ? 1 : scalePercX;
       scalePercY = this.device.os.desktop ? 1 : scalePercY;
     }
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuQhXYyOTGi6vDYEf8aNiFC5Dkx00fsWg",
+      authDomain: "galacticshooter-fc6d2.firebaseapp.com",
+      projectId: "galacticshooter-fc6d2",
+      storageBucket: "galacticshooter-fc6d2.appspot.com",
+      messagingSenderId: "449991556888",
+      appId: "1:449991556888:web:1110c56444408736c4a86d",
+      measurementId: "G-0ECF5PFTHP"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    getAnalytics(app);
   }
 }
 

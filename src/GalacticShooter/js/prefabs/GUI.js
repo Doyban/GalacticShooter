@@ -82,7 +82,7 @@ export default class GUI {
    * @function setScore
    */
   setScore(value) {
-    this.score_buffer += value;
+    this.score_buffer += parseInt(value) * parseInt(localStorage.scoreRate);
   }
 
   /**
@@ -104,7 +104,8 @@ export default class GUI {
     // Score counter effect.
     if (this.score_buffer !== 0) {
       this.score_buffer--;
-      this.score += 1;
+      this.score += 1 * parseInt(localStorage.scoreRate);
+      localStorage.score = this.score; // Set score to possibly share it in game over popup.
       this.score_text.text = 'Score: ' + this.score;
     }
   }

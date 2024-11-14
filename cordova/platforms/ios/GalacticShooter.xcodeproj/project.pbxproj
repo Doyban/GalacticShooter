@@ -1,0 +1,733 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
+		04B5998C5EB140279666C207 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FAF385E74F4D58B5BD3A24 /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0509396B8CED42DD976C6396 /* CDVWKInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE0CA76E90E487B8FDB3357 /* CDVWKInAppBrowser.m */; };
+		079184E6ACEA4F08B66238C6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B40F6BB02D44109AA01548 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		098393FB88244FBEA7F50978 /* CDVInAppBrowserOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F963F2FCF763461B9078A07F /* CDVInAppBrowserOptions.m */; };
+		18DDF97502BE4031AF008436 /* CDVBuildInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E474E1FE8F4D7394F96C12 /* CDVBuildInfo.m */; };
+		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		29B7214080DC4932811EB0E8 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BDCA7637624666B469DD0F /* FacebookConnectPlugin.m */; };
+		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
+		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
+		30FCD5724BCB4E2494684123 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = B433B049198946349EE95E1F /* SocialSharing.m */; };
+		6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */; };
+		7E3B680C16E24C41989F09FD /* SKProductDiscount+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8A459136B042F880AB03DC /* SKProductDiscount+LocalizedPrice.m */; };
+		8C07CC17EA674EB5A072AAF2 /* AppDelegate+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA95D1A8C4406DBD6862E6 /* AppDelegate+CULPlugin.m */; };
+		8C9F6513B2044F2EB289B873 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF59CA214B9B4B82BD75B4EA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8D063821AB45493ABFA55E12 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 511BAFBBC2544223A1E2D4FD /* FileUtility.m */; };
+		8DAC9D7F2D7F4B2AB70E5717 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918BCC2BCAAC4A3698EED326 /* StoreKit.framework */; };
+		911418004F4D7B72919587F7 /* libPods-GalacticShooter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FDE81A93DB05278BED4ABA /* libPods-GalacticShooter.a */; };
+		932EB0B46BFC4B928897C377 /* CBTBrowserTab.m in Sources */ = {isa = PBXBuildFile; fileRef = BE265A18CBB0411D97FF839D /* CBTBrowserTab.m */; };
+		99923B938DA84B00B5FB4DC8 /* CDVInAppBrowserNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE450E9B5DF414086B56C18 /* CDVInAppBrowserNavigationController.m */; };
+		9DF4D254A2604E2F8C1642C9 /* NSBundle+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E869CEC9C474962A468E367 /* NSBundle+CULPlugin.m */; };
+		A1FE09907F4F4160A2913D10 /* CULConfigXmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 35AE32B61C934BB59B446124 /* CULConfigXmlParser.m */; };
+		B32DA526EA5D4FDB846648F4 /* CULHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D65B927984F70AFE02DBB /* CULHost.m */; };
+		C813E24A2CFD4A74BC3F4A12 /* CDVPluginResult+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 77303CEB8AA5479A8889EFF9 /* CDVPluginResult+CULPlugin.m */; };
+		D06CAD06FEAA461D8265C1B8 /* SafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A763BDD4A942F7A08C967D /* SafariViewController.m */; };
+		D1C1CCDCBAD2401BBED1F96E /* NSString+SSURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4A9A0DE5534CD0AC2C6CBB /* NSString+SSURLEncoding.m */; };
+		D6B47103BCB14E8E99EB3A70 /* CULConfigJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEAD9689C45AF8FCB3B83 /* CULConfigJsonParser.m */; };
+		DAA8279CEBBE4891B1C5EA0B /* CULPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B651FDF06D7491A9B0B0A2B /* CULPath.m */; };
+		DF5A8599BF164DFAB8E511AD /* CULXmlTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 685267B5B6F3486983C23CAD /* CULXmlTags.m */; };
+		E31C210DD88B4D19A4179064 /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4AE8EDC66349ECA2E73FA9 /* InAppPurchase.m */; };
+		E33B12184393467080BF6C29 /* CDVWKInAppBrowserUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86617FD4274E4689A499ECCF /* CDVWKInAppBrowserUIDelegate.m */; };
+		E66A30B6164749B7B6CFA92C /* CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 050BE2DFD3F84C10BDA86D0A /* CULPlugin.m */; };
+		E95064AF53994F4CA15F4693 /* CDVInvokedUrlCommand+CULPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 48328654C83440F9B26BC3FF /* CDVInvokedUrlCommand+CULPlugin.m */; };
+		F75878366C104B3CB89164CD /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4B2137B4FF40BC9DB5DD29 /* SKProduct+LocalizedPrice.m */; };
+		44E2E4AA9CE84479A6BFB1BC /* AMBAdBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85FC90089B458B986A2EE6 /* AMBAdBase.swift */; };
+		178BCAED55A749E0BC073695 /* AMBAppOpenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA415DDDCB554EB89FA7D2F4 /* AMBAppOpenAd.swift */; };
+		1A2E56D7FD0D4B43A6F7A8B1 /* AMBBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E13079D8C544BA8C9F297D /* AMBBanner.swift */; };
+		3A67ADD08D2945AA9F5EC7E5 /* AMBContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6876D7A087B443392C88120 /* AMBContext.swift */; };
+		93F61224D93A46699BD6432B /* AMBCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7843F75F12AF4638A3027799 /* AMBCore.swift */; };
+		82B9F47C71954B79BB428951 /* AMBGenerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253D02EC0EF546B2A25B1689 /* AMBGenerated.swift */; };
+		B6C39A3023194F7E81328CFA /* AMBInterstitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A883B1A60A49A08924657A /* AMBInterstitial.swift */; };
+		B15CC3AA997F4D82B0D8A766 /* AMBNativeAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C332E9BE1C14AF7A1BCF3A0 /* AMBNativeAd.swift */; };
+		03CB655CADA94163A1994EFC /* AMBPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665A312A4134958B2297B54 /* AMBPlugin.swift */; };
+		97CB4F9DBB554B179CF9F081 /* AMBRewarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2951A35A4D040A68E912959 /* AMBRewarded.swift */; };
+		F43B47B21DD646E4B2CED3FD /* AMBRewardedInterstitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781A107434A4FB2A654979D /* AMBRewardedInterstitial.swift */; };
+		B1509A85F01E4F3182914BF6 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C226E3EF15642C5A7523ED8 /* AppTrackingTransparency.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+		301BF550109A68C00062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+		907D8123214C687600058A10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C0C01EB21E3911D50056E6CB;
+			remoteInfo = Cordova;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0207159418D94C1AAFAD868B /* CDVInvokedUrlCommand+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVInvokedUrlCommand+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.h"; sourceTree = "<group>"; };
+		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GalacticShooter/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		050BE2DFD3F84C10BDA86D0A /* CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULPlugin.m; path = "cordova-universal-links-plugin/CULPlugin.m"; sourceTree = "<group>"; };
+		0F4B2137B4FF40BC9DB5DD29 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "SKProduct+LocalizedPrice.m"; path = "cordova-plugin-purchase/SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		11B70A77299239B7ED7BEEB6 /* Pods-GalacticShooter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalacticShooter.release.xcconfig"; path = "Target Support Files/Pods-GalacticShooter/Pods-GalacticShooter.release.xcconfig"; sourceTree = "<group>"; };
+		14FDE81A93DB05278BED4ABA /* libPods-GalacticShooter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GalacticShooter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15BDCA7637624666B469DD0F /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = FacebookConnectPlugin.m; path = "cordova-plugin-facebook-connect/FacebookConnectPlugin.m"; sourceTree = "<group>"; };
+		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* GalacticShooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GalacticShooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
+		302D95EE14D2391D003F00A1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		302D95EF14D2391D003F00A1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		302D95F014D2391D003F00A1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		3047A50F1AB8059700498E2A /* build-debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-debug.xcconfig"; path = "cordova/build-debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		3047A5101AB8059700498E2A /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = SOURCE_ROOT; };
+		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
+		317A832158D04CF3A0ED40A6 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = FacebookConnectPlugin.h; path = "cordova-plugin-facebook-connect/FacebookConnectPlugin.h"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* GalacticShooter-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GalacticShooter-Prefix.pch"; sourceTree = "<group>"; };
+		32FAF385E74F4D58B5BD3A24 /* SafariServices.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		342D65B927984F70AFE02DBB /* CULHost.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULHost.m; path = "cordova-universal-links-plugin/Model/CULHost.m"; sourceTree = "<group>"; };
+		35AE32B61C934BB59B446124 /* CULConfigXmlParser.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULConfigXmlParser.m; path = "cordova-universal-links-plugin/Parser/XML/CULConfigXmlParser.m"; sourceTree = "<group>"; };
+		3AE450E9B5DF414086B56C18 /* CDVInAppBrowserNavigationController.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowserNavigationController.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowserNavigationController.m"; sourceTree = "<group>"; };
+		3B651FDF06D7491A9B0B0A2B /* CULPath.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULPath.m; path = "cordova-universal-links-plugin/Model/CULPath.m"; sourceTree = "<group>"; };
+		48328654C83440F9B26BC3FF /* CDVInvokedUrlCommand+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVInvokedUrlCommand+CULPlugin.m"; path = "cordova-universal-links-plugin/JS/CDVInvokedUrlCommand+CULPlugin.m"; sourceTree = "<group>"; };
+		4E9FD4D29D1047EA831243C2 /* CDVPluginResult+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVPluginResult+CULPlugin.h"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.h"; sourceTree = "<group>"; };
+		4EA4D24051A24E8AAA02EDE8 /* NSBundle+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "NSBundle+CULPlugin.h"; path = "cordova-universal-links-plugin/Utils/NSBundle+CULPlugin.h"; sourceTree = "<group>"; };
+		511BAFBBC2544223A1E2D4FD /* FileUtility.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = FileUtility.m; path = "cordova-plugin-purchase/FileUtility.m"; sourceTree = "<group>"; };
+		5D0DEAD9689C45AF8FCB3B83 /* CULConfigJsonParser.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULConfigJsonParser.m; path = "cordova-universal-links-plugin/Parser/JSON/CULConfigJsonParser.m"; sourceTree = "<group>"; };
+		685267B5B6F3486983C23CAD /* CULXmlTags.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CULXmlTags.m; path = "cordova-universal-links-plugin/Parser/XML/CULXmlTags.m"; sourceTree = "<group>"; };
+		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = GalacticShooter/CDVLaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		6BC37FD470974005A62447CB /* NSString+SSURLEncoding.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "NSString+SSURLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.h"; sourceTree = "<group>"; };
+		6C12DCEAEEEE428CB7865E91 /* CULConfigJsonParser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULConfigJsonParser.h; path = "cordova-universal-links-plugin/Parser/JSON/CULConfigJsonParser.h"; sourceTree = "<group>"; };
+		6F1CF0F389F14C929814B3D7 /* CULXmlTags.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULXmlTags.h; path = "cordova-universal-links-plugin/Parser/XML/CULXmlTags.h"; sourceTree = "<group>"; };
+		71A763BDD4A942F7A08C967D /* SafariViewController.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = SafariViewController.m; path = "cordova-plugin-safariviewcontroller/SafariViewController.m"; sourceTree = "<group>"; };
+		77303CEB8AA5479A8889EFF9 /* CDVPluginResult+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVPluginResult+CULPlugin.m"; path = "cordova-universal-links-plugin/JS/CDVPluginResult+CULPlugin.m"; sourceTree = "<group>"; };
+		7761B423F7CC4F839FD15145 /* AppDelegate+CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+CULPlugin.h"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.h"; sourceTree = "<group>"; };
+		7FAA95D1A8C4406DBD6862E6 /* AppDelegate+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+CULPlugin.m"; path = "cordova-universal-links-plugin/AppDelegate+CULPlugin.m"; sourceTree = "<group>"; };
+		81CB8E411BA84379BBC81A92 /* SafariViewController.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = SafariViewController.h; path = "cordova-plugin-safariviewcontroller/SafariViewController.h"; sourceTree = "<group>"; };
+		86617FD4274E4689A499ECCF /* CDVWKInAppBrowserUIDelegate.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKInAppBrowserUIDelegate.m; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.m"; sourceTree = "<group>"; };
+		8B4AE8EDC66349ECA2E73FA9 /* InAppPurchase.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = InAppPurchase.m; path = "cordova-plugin-purchase/InAppPurchase.m"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* GalacticShooter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GalacticShooter-Info.plist"; path = "GalacticShooter/GalacticShooter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+		8E869CEC9C474962A468E367 /* NSBundle+CULPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+CULPlugin.m"; path = "cordova-universal-links-plugin/Utils/NSBundle+CULPlugin.m"; sourceTree = "<group>"; };
+		918BCC2BCAAC4A3698EED326 /* StoreKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		922FD38FB2BF4C6E843A9415 /* CDVWKInAppBrowserUIDelegate.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKInAppBrowserUIDelegate.h; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.h"; sourceTree = "<group>"; };
+		9366858D691149D58A1FDAD6 /* CDVBuildInfo.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVBuildInfo.h; path = "cordova-plugin-buildinfo/CDVBuildInfo.h"; sourceTree = "<group>"; };
+		94736D043DF442C3A75B8ABC /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "SKProduct+LocalizedPrice.h"; path = "cordova-plugin-purchase/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		95B40F6BB02D44109AA01548 /* MessageUI.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9B64C1BDACB14141957B9294 /* SocialSharing.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = SocialSharing.h; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; };
+		A565329C9FAB4992A81CECB6 /* CBTBrowserTab.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CBTBrowserTab.h; path = "cordova-plugin-browsertab/CBTBrowserTab.h"; sourceTree = "<group>"; };
+		B433B049198946349EE95E1F /* SocialSharing.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = SocialSharing.m; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; };
+		BD1CE4A494D3485F809AC828 /* CULPath.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULPath.h; path = "cordova-universal-links-plugin/Model/CULPath.h"; sourceTree = "<group>"; };
+		BE265A18CBB0411D97FF839D /* CBTBrowserTab.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CBTBrowserTab.m; path = "cordova-plugin-browsertab/CBTBrowserTab.m"; sourceTree = "<group>"; };
+		C2AA03EDFF424B17922D6A48 /* CULPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULPlugin.h; path = "cordova-universal-links-plugin/CULPlugin.h"; sourceTree = "<group>"; };
+		C39C976365DD48708425A06B /* CDVInAppBrowserOptions.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowserOptions.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.h"; sourceTree = "<group>"; };
+		C7E474E1FE8F4D7394F96C12 /* CDVBuildInfo.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVBuildInfo.m; path = "cordova-plugin-buildinfo/CDVBuildInfo.m"; sourceTree = "<group>"; };
+		CD41B08AA87743008ED2EB9C /* CULHost.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULHost.h; path = "cordova-universal-links-plugin/Model/CULHost.h"; sourceTree = "<group>"; };
+		CD420E4F0B7045118D07D225 /* InAppPurchase.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = InAppPurchase.h; path = "cordova-plugin-purchase/InAppPurchase.h"; sourceTree = "<group>"; };
+		CE4A9A0DE5534CD0AC2C6CBB /* NSString+SSURLEncoding.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSString+SSURLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.m"; sourceTree = "<group>"; };
+		D9CB749D0FC349F696C8770F /* FileUtility.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = FileUtility.h; path = "cordova-plugin-purchase/FileUtility.h"; sourceTree = "<group>"; };
+		DB8A459136B042F880AB03DC /* SKProductDiscount+LocalizedPrice.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "SKProductDiscount+LocalizedPrice.m"; path = "cordova-plugin-purchase/SKProductDiscount+LocalizedPrice.m"; sourceTree = "<group>"; };
+		DE63149F24FC41B383063BB7 /* SKProductDiscount+LocalizedPrice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "SKProductDiscount+LocalizedPrice.h"; path = "cordova-plugin-purchase/SKProductDiscount+LocalizedPrice.h"; sourceTree = "<group>"; };
+		DF59CA214B9B4B82BD75B4EA /* Social.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E3ED5FA114615B2A8744BFD6 /* Pods-GalacticShooter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalacticShooter.debug.xcconfig"; path = "Target Support Files/Pods-GalacticShooter/Pods-GalacticShooter.debug.xcconfig"; sourceTree = "<group>"; };
+		E7F093EE2541479389B3E6A7 /* CULConfigXmlParser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CULConfigXmlParser.h; path = "cordova-universal-links-plugin/Parser/XML/CULConfigXmlParser.h"; sourceTree = "<group>"; };
+		E96D428046114C598DB0E94F /* CDVInAppBrowserNavigationController.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowserNavigationController.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowserNavigationController.h"; sourceTree = "<group>"; };
+		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
+		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		ED55118A9D5C4ADB834EA752 /* CDVWKInAppBrowser.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKInAppBrowser.h; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.h"; sourceTree = "<group>"; };
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = GalacticShooter/config.xml; sourceTree = "<group>"; };
+		F963F2FCF763461B9078A07F /* CDVInAppBrowserOptions.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowserOptions.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowserOptions.m"; sourceTree = "<group>"; };
+		FFE0CA76E90E487B8FDB3357 /* CDVWKInAppBrowser.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKInAppBrowser.m; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowser.m"; sourceTree = "<group>"; };
+		FD85FC90089B458B986A2EE6 /* AMBAdBase.swift */ = {isa = PBXFileReference; name = "AMBAdBase.swift"; path = "admob-plus-cordova/AMBAdBase.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		AA415DDDCB554EB89FA7D2F4 /* AMBAppOpenAd.swift */ = {isa = PBXFileReference; name = "AMBAppOpenAd.swift"; path = "admob-plus-cordova/AMBAppOpenAd.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		B0E13079D8C544BA8C9F297D /* AMBBanner.swift */ = {isa = PBXFileReference; name = "AMBBanner.swift"; path = "admob-plus-cordova/AMBBanner.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		F6876D7A087B443392C88120 /* AMBContext.swift */ = {isa = PBXFileReference; name = "AMBContext.swift"; path = "admob-plus-cordova/AMBContext.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		7843F75F12AF4638A3027799 /* AMBCore.swift */ = {isa = PBXFileReference; name = "AMBCore.swift"; path = "admob-plus-cordova/AMBCore.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		253D02EC0EF546B2A25B1689 /* AMBGenerated.swift */ = {isa = PBXFileReference; name = "AMBGenerated.swift"; path = "admob-plus-cordova/AMBGenerated.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		88A883B1A60A49A08924657A /* AMBInterstitial.swift */ = {isa = PBXFileReference; name = "AMBInterstitial.swift"; path = "admob-plus-cordova/AMBInterstitial.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		4C332E9BE1C14AF7A1BCF3A0 /* AMBNativeAd.swift */ = {isa = PBXFileReference; name = "AMBNativeAd.swift"; path = "admob-plus-cordova/AMBNativeAd.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		E665A312A4134958B2297B54 /* AMBPlugin.swift */ = {isa = PBXFileReference; name = "AMBPlugin.swift"; path = "admob-plus-cordova/AMBPlugin.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		D2951A35A4D040A68E912959 /* AMBRewarded.swift */ = {isa = PBXFileReference; name = "AMBRewarded.swift"; path = "admob-plus-cordova/AMBRewarded.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		0781A107434A4FB2A654979D /* AMBRewardedInterstitial.swift */ = {isa = PBXFileReference; name = "AMBRewardedInterstitial.swift"; path = "admob-plus-cordova/AMBRewardedInterstitial.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		2C226E3EF15642C5A7523ED8 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; name = "AppTrackingTransparency.framework"; path = "System/Library/Frameworks/AppTrackingTransparency.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				8C9F6513B2044F2EB289B873 /* Social.framework in Frameworks */,
+				079184E6ACEA4F08B66238C6 /* MessageUI.framework in Frameworks */,
+				04B5998C5EB140279666C207 /* SafariServices.framework in Frameworks */,
+				8DAC9D7F2D7F4B2AB70E5717 /* StoreKit.framework in Frameworks */,
+				911418004F4D7B72919587F7 /* libPods-GalacticShooter.a in Frameworks */,
+				B1509A85F01E4F3182914BF6 /* AppTrackingTransparency.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				302D95EE14D2391D003F00A1 /* MainViewController.h */,
+				302D95EF14D2391D003F00A1 /* MainViewController.m */,
+				302D95F014D2391D003F00A1 /* MainViewController.xib */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
+			);
+			name = Classes;
+			path = GalacticShooter/Classes;
+			sourceTree = SOURCE_ROOT;
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* GalacticShooter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA = {
+			isa = PBXGroup;
+			children = (
+				EB87FDF41871DAF40020F90C /* config.xml */,
+				EB87FDF31871DA8E0020F90C /* www */,
+				EB87FDF11871DA420020F90C /* Staging */,
+				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				307C750510C5A3420062BCA9 /* Plugins */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				DA2C5C9B7017238D9C7AFF7A /* Pods */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* GalacticShooter-Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */,
+			);
+			name = "Other Sources";
+			path = GalacticShooter;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0207DA571B56EA530066E2B4 /* Images.xcassets */,
+				3047A50E1AB8057F00498E2A /* config */,
+				8D1107310486CEB800E47090 /* GalacticShooter-Info.plist */,
+				6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */,
+			);
+			name = Resources;
+			path = GalacticShooter/Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF59CA214B9B4B82BD75B4EA /* Social.framework */,
+				95B40F6BB02D44109AA01548 /* MessageUI.framework */,
+				32FAF385E74F4D58B5BD3A24 /* SafariServices.framework */,
+				918BCC2BCAAC4A3698EED326 /* StoreKit.framework */,
+				14FDE81A93DB05278BED4ABA /* libPods-GalacticShooter.a */,
+				2C226E3EF15642C5A7523ED8 /* AppTrackingTransparency.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		301BF52E109A57CC0062928A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				301BF535109A57CC0062928A /* libCordova.a */,
+				907D8124214C687600058A10 /* Cordova.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3047A50E1AB8057F00498E2A /* config */ = {
+			isa = PBXGroup;
+			children = (
+				3047A50F1AB8059700498E2A /* build-debug.xcconfig */,
+				3047A5101AB8059700498E2A /* build-release.xcconfig */,
+				3047A5111AB8059700498E2A /* build.xcconfig */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		307C750510C5A3420062BCA9 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				15BDCA7637624666B469DD0F /* FacebookConnectPlugin.m */,
+				317A832158D04CF3A0ED40A6 /* FacebookConnectPlugin.h */,
+				CE4A9A0DE5534CD0AC2C6CBB /* NSString+SSURLEncoding.m */,
+				B433B049198946349EE95E1F /* SocialSharing.m */,
+				6BC37FD470974005A62447CB /* NSString+SSURLEncoding.h */,
+				9B64C1BDACB14141957B9294 /* SocialSharing.h */,
+				C7E474E1FE8F4D7394F96C12 /* CDVBuildInfo.m */,
+				9366858D691149D58A1FDAD6 /* CDVBuildInfo.h */,
+				BE265A18CBB0411D97FF839D /* CBTBrowserTab.m */,
+				A565329C9FAB4992A81CECB6 /* CBTBrowserTab.h */,
+				F963F2FCF763461B9078A07F /* CDVInAppBrowserOptions.m */,
+				3AE450E9B5DF414086B56C18 /* CDVInAppBrowserNavigationController.m */,
+				FFE0CA76E90E487B8FDB3357 /* CDVWKInAppBrowser.m */,
+				86617FD4274E4689A499ECCF /* CDVWKInAppBrowserUIDelegate.m */,
+				C39C976365DD48708425A06B /* CDVInAppBrowserOptions.h */,
+				E96D428046114C598DB0E94F /* CDVInAppBrowserNavigationController.h */,
+				ED55118A9D5C4ADB834EA752 /* CDVWKInAppBrowser.h */,
+				922FD38FB2BF4C6E843A9415 /* CDVWKInAppBrowserUIDelegate.h */,
+				050BE2DFD3F84C10BDA86D0A /* CULPlugin.m */,
+				7FAA95D1A8C4406DBD6862E6 /* AppDelegate+CULPlugin.m */,
+				77303CEB8AA5479A8889EFF9 /* CDVPluginResult+CULPlugin.m */,
+				48328654C83440F9B26BC3FF /* CDVInvokedUrlCommand+CULPlugin.m */,
+				342D65B927984F70AFE02DBB /* CULHost.m */,
+				3B651FDF06D7491A9B0B0A2B /* CULPath.m */,
+				685267B5B6F3486983C23CAD /* CULXmlTags.m */,
+				35AE32B61C934BB59B446124 /* CULConfigXmlParser.m */,
+				5D0DEAD9689C45AF8FCB3B83 /* CULConfigJsonParser.m */,
+				8E869CEC9C474962A468E367 /* NSBundle+CULPlugin.m */,
+				C2AA03EDFF424B17922D6A48 /* CULPlugin.h */,
+				7761B423F7CC4F839FD15145 /* AppDelegate+CULPlugin.h */,
+				4E9FD4D29D1047EA831243C2 /* CDVPluginResult+CULPlugin.h */,
+				0207159418D94C1AAFAD868B /* CDVInvokedUrlCommand+CULPlugin.h */,
+				CD41B08AA87743008ED2EB9C /* CULHost.h */,
+				BD1CE4A494D3485F809AC828 /* CULPath.h */,
+				6F1CF0F389F14C929814B3D7 /* CULXmlTags.h */,
+				E7F093EE2541479389B3E6A7 /* CULConfigXmlParser.h */,
+				6C12DCEAEEEE428CB7865E91 /* CULConfigJsonParser.h */,
+				4EA4D24051A24E8AAA02EDE8 /* NSBundle+CULPlugin.h */,
+				71A763BDD4A942F7A08C967D /* SafariViewController.m */,
+				81CB8E411BA84379BBC81A92 /* SafariViewController.h */,
+				8B4AE8EDC66349ECA2E73FA9 /* InAppPurchase.m */,
+				0F4B2137B4FF40BC9DB5DD29 /* SKProduct+LocalizedPrice.m */,
+				DB8A459136B042F880AB03DC /* SKProductDiscount+LocalizedPrice.m */,
+				511BAFBBC2544223A1E2D4FD /* FileUtility.m */,
+				CD420E4F0B7045118D07D225 /* InAppPurchase.h */,
+				94736D043DF442C3A75B8ABC /* SKProduct+LocalizedPrice.h */,
+				DE63149F24FC41B383063BB7 /* SKProductDiscount+LocalizedPrice.h */,
+				D9CB749D0FC349F696C8770F /* FileUtility.h */,
+				FD85FC90089B458B986A2EE6 /* AMBAdBase.swift */,
+				AA415DDDCB554EB89FA7D2F4 /* AMBAppOpenAd.swift */,
+				B0E13079D8C544BA8C9F297D /* AMBBanner.swift */,
+				F6876D7A087B443392C88120 /* AMBContext.swift */,
+				7843F75F12AF4638A3027799 /* AMBCore.swift */,
+				253D02EC0EF546B2A25B1689 /* AMBGenerated.swift */,
+				88A883B1A60A49A08924657A /* AMBInterstitial.swift */,
+				4C332E9BE1C14AF7A1BCF3A0 /* AMBNativeAd.swift */,
+				E665A312A4134958B2297B54 /* AMBPlugin.swift */,
+				D2951A35A4D040A68E912959 /* AMBRewarded.swift */,
+				0781A107434A4FB2A654979D /* AMBRewardedInterstitial.swift */,
+			);
+			name = Plugins;
+			path = GalacticShooter/Plugins;
+			sourceTree = SOURCE_ROOT;
+		};
+		DA2C5C9B7017238D9C7AFF7A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E3ED5FA114615B2A8744BFD6 /* Pods-GalacticShooter.debug.xcconfig */,
+				11B70A77299239B7ED7BEEB6 /* Pods-GalacticShooter.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EB87FDF11871DA420020F90C /* Staging */ = {
+			isa = PBXGroup;
+			children = (
+				F840E1F0165FE0F500CFE078 /* config.xml */,
+				301BF56E109A69640062928A /* www */,
+			);
+			name = Staging;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* GalacticShooter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "GalacticShooter" */;
+			buildPhases = (
+				05D393304374B2F8AD2934E1 /* [CP] Check Pods Manifest.lock */,
+				304B58A110DAC018002A0835 /* Copy www directory */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				DBCD2225E2D237943F8790FA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				301BF551109A68C00062928A /* PBXTargetDependency */,
+			);
+			name = GalacticShooter;
+			productName = GalacticShooter;
+			productReference = 1D6058910D05DD3D006BFB54 /* GalacticShooter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GalacticShooter" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 301BF52E109A57CC0062928A /* Products */;
+					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* GalacticShooter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		301BF535109A57CC0062928A /* libCordova.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCordova.a;
+			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		907D8124214C687600058A10 /* Cordova.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cordova.framework;
+			remoteRef = 907D8123214C687600058A10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
+				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
+				6AFF5BF91D6E424B00AB3073 /* CDVLaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05D393304374B2F8AD2934E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GalacticShooter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		304B58A110DAC018002A0835 /* Copy www directory */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy www directory";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/GalacticShooter/Scripts/copy-www-build-step.sh\"";
+			showEnvVarsInLog = 0;
+		};
+		DBCD2225E2D237943F8790FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GalacticShooter/Pods-GalacticShooter-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GalacticShooter/Pods-GalacticShooter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GalacticShooter/Pods-GalacticShooter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				29B7214080DC4932811EB0E8 /* FacebookConnectPlugin.m in Sources */,
+				D1C1CCDCBAD2401BBED1F96E /* NSString+SSURLEncoding.m in Sources */,
+				30FCD5724BCB4E2494684123 /* SocialSharing.m in Sources */,
+				18DDF97502BE4031AF008436 /* CDVBuildInfo.m in Sources */,
+				932EB0B46BFC4B928897C377 /* CBTBrowserTab.m in Sources */,
+				098393FB88244FBEA7F50978 /* CDVInAppBrowserOptions.m in Sources */,
+				99923B938DA84B00B5FB4DC8 /* CDVInAppBrowserNavigationController.m in Sources */,
+				0509396B8CED42DD976C6396 /* CDVWKInAppBrowser.m in Sources */,
+				E33B12184393467080BF6C29 /* CDVWKInAppBrowserUIDelegate.m in Sources */,
+				E66A30B6164749B7B6CFA92C /* CULPlugin.m in Sources */,
+				8C07CC17EA674EB5A072AAF2 /* AppDelegate+CULPlugin.m in Sources */,
+				C813E24A2CFD4A74BC3F4A12 /* CDVPluginResult+CULPlugin.m in Sources */,
+				E95064AF53994F4CA15F4693 /* CDVInvokedUrlCommand+CULPlugin.m in Sources */,
+				B32DA526EA5D4FDB846648F4 /* CULHost.m in Sources */,
+				DAA8279CEBBE4891B1C5EA0B /* CULPath.m in Sources */,
+				DF5A8599BF164DFAB8E511AD /* CULXmlTags.m in Sources */,
+				A1FE09907F4F4160A2913D10 /* CULConfigXmlParser.m in Sources */,
+				D6B47103BCB14E8E99EB3A70 /* CULConfigJsonParser.m in Sources */,
+				9DF4D254A2604E2F8C1642C9 /* NSBundle+CULPlugin.m in Sources */,
+				D06CAD06FEAA461D8265C1B8 /* SafariViewController.m in Sources */,
+				E31C210DD88B4D19A4179064 /* InAppPurchase.m in Sources */,
+				F75878366C104B3CB89164CD /* SKProduct+LocalizedPrice.m in Sources */,
+				7E3B680C16E24C41989F09FD /* SKProductDiscount+LocalizedPrice.m in Sources */,
+				8D063821AB45493ABFA55E12 /* FileUtility.m in Sources */,
+				44E2E4AA9CE84479A6BFB1BC /* AMBAdBase.swift in Sources */,
+				178BCAED55A749E0BC073695 /* AMBAppOpenAd.swift in Sources */,
+				1A2E56D7FD0D4B43A6F7A8B1 /* AMBBanner.swift in Sources */,
+				3A67ADD08D2945AA9F5EC7E5 /* AMBContext.swift in Sources */,
+				93F61224D93A46699BD6432B /* AMBCore.swift in Sources */,
+				82B9F47C71954B79BB428951 /* AMBGenerated.swift in Sources */,
+				B6C39A3023194F7E81328CFA /* AMBInterstitial.swift in Sources */,
+				B15CC3AA997F4D82B0D8A766 /* AMBNativeAd.swift in Sources */,
+				03CB655CADA94163A1994EFC /* AMBPlugin.swift in Sources */,
+				97CB4F9DBB554B179CF9F081 /* AMBRewarded.swift in Sources */,
+				F43B47B21DD646E4B2CED3FD /* AMBRewardedInterstitial.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		301BF551109A68C00062928A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CordovaLib;
+			targetProxy = 301BF550109A68C00062928A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GalacticShooter/GalacticShooter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "GalacticShooter/GalacticShooter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.doyban.galacticshooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5101AB8059700498E2A /* build-release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GalacticShooter/GalacticShooter-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "GalacticShooter/GalacticShooter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.doyban.galacticshooter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				WK_WEB_VIEW_ONLY = 1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3047A5111AB8059700498E2A /* build.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				WK_WEB_VIEW_ONLY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "GalacticShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "GalacticShooter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

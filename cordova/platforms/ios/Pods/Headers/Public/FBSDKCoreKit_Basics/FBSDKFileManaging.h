@@ -1,0 +1,1 @@
+../../../FBSDKCoreKit_Basics/Sources/FBSDKCoreKit_Basics/include/FBSDKFileManaging.h

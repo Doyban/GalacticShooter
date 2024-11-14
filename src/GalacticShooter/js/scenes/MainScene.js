@@ -78,6 +78,9 @@ export default class MainScene extends Phaser.Scene {
       'assets/bitmapfonts/spacefont.png',
       'assets/bitmapfonts/spacefont.xml'
     );
+
+    localStorage.scoreRate = localStorage.scoreRate || 1; // Initialize scoreRate.
+    localStorage.score = 0;
   }
 
   /**

@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import ScrollingBackground from '../prefabs/ScrollingBackground';
+import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider } from 'firebase/auth/cordova';
 import { scalePercX, scalePercY } from '../game';
 
 /**
@@ -243,7 +244,7 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onCloseButtonDown() {
-    alert("close button down");
+    navigator.app.exitApp(); // Close the game.
   }
 
   /**
@@ -252,7 +253,21 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onInviteFriendsButtonDown() {
-    alert("invite friends button down");
+    // Setting up configuration for the event.
+    const options = {
+      method: 'apprequests',
+      message: 'Play GalacticShooter with me!'
+    };
+
+    // Event handlers.
+    const onSuccess = () => {
+      alert("Inviting friends successful.");
+    };
+    const onError = () => {
+      alert("Inviting friends unsuccessful.");
+    };
+
+    facebookConnectPlugin.showDialog(options, onSuccess, onError); // Cordova plugin execution.
   }
 
   /**
@@ -261,7 +276,25 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onLoginButtonDown() {
-    alert("login button down");
+    this.loginUsingFirebase();
+  }
+
+  /**
+   * @description Login the user using Firebase Google authentication.
+   * @function loginUsingFirebase
+   * @returns {void}
+   */
+  loginUsingFirebase() {
+    const auth = getAuth(); // Create an instance of the authentication object.
+
+    // Sign in by redirecting to the sign-in page.
+    signInWithRedirect(auth, new GoogleAuthProvider())
+      .then(() => {
+        alert('Authentication successful.')
+        return getRedirectResult(auth);
+      }).catch(() => {
+        alert('Authentication unsuccessful.')
+      });
   }
 
   /**
@@ -270,7 +303,23 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onShareButtonDown() {
-    alert("share button down");
+    // Setting up configuration for the event.
+    const options = {
+      message: 'Play GalacticShooter!', // not supported on some apps (Facebook, Instagram)
+      subject: 'Cool game to be played :-)', // fi. for email
+      files: ['assets/images/logo.webp'], // an array of filenames either locally or remotely
+      url: 'https://doyban.com/games/galacticshooter',
+    };
+
+    // Event handlers.
+    const onSuccess = () => {
+      alert("Sharing successful.");
+    };
+    const onError = () => {
+      alert("Sharing unsuccessful.");
+    };
+
+    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError); // Cordova plugin execution.
   }
 
   /**
@@ -279,7 +328,6 @@ export default class MainMenuScene extends Phaser.Scene {
    * @returns {void}
    */
   onShopButtonDown() {
-    alert("shop button down");
     this.scene.start('ShopScene');
   }
 

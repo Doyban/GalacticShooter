@@ -53,7 +53,25 @@ export class ShopItem {
    * @description Listen on input down of ShopItem and perform necessary actions if it occurs.
    */
   onItemClicked() {
-    alert(`item clicked ${this.multiplier}`)
+    // Purchase In-App Purchase (IAP) item.
+    const store = CdvPurchase.store;
+    const { Platform } = CdvPurchase; // shortcuts
+
+    store.when()
+      .approved((transaction) => {
+        // Add extra score and begin the game.
+        localStorage.scoreRate = parseInt(this.multiplier);
+
+        transaction.finish(); // Consume the transaction, so user can order the same item again (https://github.com/j3k0/cordova-plugin-purchase/issues/1459).
+      });
+
+      store.initialize([
+        Platform.GOOGLE_PLAY,
+      ]);
+
+    // Purchase product.
+    const offer = store.get(`scorex${this.multiplier}`, Platform.GOOGLE_PLAY).getOffer(); // Android requires just ID, but iOS full .com.doyban.myApp.scorexA path.
+    store.order(offer);
   }
 
   /**

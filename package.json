@@ -1,6 +1,6 @@
 {
   "name": "GalacticShooter",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Minimalistic Galactic Shooting Game",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "author": "Doyban",
   "dependencies": {
+    "firebase": "^10.12.3",
     "phaser": "^3.19.0"
   },
   "devDependencies": {

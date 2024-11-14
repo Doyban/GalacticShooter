@@ -1,4 +1,5 @@
 import Entity from '../prefabs/Entity';
+import GUI from '../prefabs/GUI';
 import LaserPlayer from '../prefabs/LaserPlayer';
 
 /**
@@ -42,6 +43,7 @@ export default class Player extends Entity {
       // Player is dead, perform explosion and do game over.
       this.performExplosion(false, false); // Final explode which will destroy the player on animation complete.
       this.gameOver(); // Game over, because the player is dead.
+      this.showAdMobAds(); // Show ads.
     } else {
       // Player is not dead, perform explosion whenever player got hit.
       this.performExplosion(false, true);
@@ -85,6 +87,25 @@ export default class Player extends Entity {
   }
 
   /**
+   * @description Show AdMob ads.
+   * @function showAdMobAds
+   * @returns {void}
+   */
+  showAdMobAds() {
+    const interstitial = new admob.InterstitialAd({
+      adUnitId: "ca-app-pub-4865595196880143/2111764922",
+    });
+    interstitial.on("dismiss", () => {
+      // Once a interstitial ad is shown, it cannot be shown again.
+      // Starts loading the next interstitial ad as soon as it is dismissed.
+      interstitial.load();
+    });
+    return interstitial
+      .load()
+      .then(() => interstitial.show());
+  }
+
+  /**
    * @description After 2 seconds move the player game over scene.
    * @function gameOver
    * @returns {void}
@@ -103,6 +124,8 @@ export default class Player extends Entity {
       callbackScope: this, // Scope (this object) to call the function with.
       loop: false // Don't loop this state.
     });
+
+    localStorage.scoreRate = 1; // Set to default scoreRate on game over.
   }
 
   /**

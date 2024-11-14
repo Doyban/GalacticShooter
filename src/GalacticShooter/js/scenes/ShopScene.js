@@ -81,6 +81,18 @@ export class ShopScene extends Phaser.Scene {
     for (let i = 0; i < count; i++) {
       this.backgroundLayers.push(new ShopItem(this, { x: (this.game.config.width * 0.5) + positions[i][0] * scalePercX, y: (this.game.config.height * 0.5) + positions[i][1] * scalePercY }, mulitpliers[i]));
     }
+
+    // Prepare products for In App Purchases (IAP's).
+    const store = CdvPurchase.store;
+    const { ProductType, Platform } = CdvPurchase;
+
+    for (const i in this.mulitpliers) {
+      store.register({
+        id: `scorex${this.mulitpliers[i]}`, // Android requires just ID, but iOS full .com.doyban.myApp.scorexA path.
+        platform: Platform.GOOGLE_PLAY,
+        type: ProductType.CONSUMABLE,
+      });
+    }
   }
 
   /**

@@ -1,0 +1,6 @@
+module Pods_GalacticShooter {
+  umbrella header "Pods-GalacticShooter-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -45,7 +45,7 @@ export default class GameOverScene extends Phaser.Scene {
     };
 
     // Add title.
-    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, this.game.config.height * 0.1, 'space_font', 'GAME OVER', 88);
+    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, 150, 'space_font', 'GAME OVER', 58 * ((scalePercX + scalePercY) * 0.5)); // Set title text properties.
     this.title.setOrigin(0.5); // Center title.
     this.title.visible = false; // Make title invisible.
 
@@ -95,7 +95,7 @@ export default class GameOverScene extends Phaser.Scene {
       this.btn_restart.setTexture('button_restart_image');
       this.scene.start('MainScene');
     }, this);
-    
+
   // Add share button image.
   this.shareButton = this.add.sprite(
     this.game.config.width * 0.35,
@@ -117,7 +117,24 @@ export default class GameOverScene extends Phaser.Scene {
   // Add pointer events with its appropriate textures, and audios.
   this.shareButton.on('pointerup', function () {
     this.sounds.button_down.play();
-    alert("share button clicked ");
+
+    // Setting up configuration for the event.
+    const options = {
+      message: 'Play GalacticShooter!', // not supported on some apps (Facebook, Instagram)
+      subject: 'My score in GalacticShooter is ' + localStorage.score + '!', // fi. for email
+      files: ['assets/images/logo.webp'], // an array of filenames either locally or remotely
+      url: 'https://doyban.com/games/galacticshooter',
+    };
+
+    // Event handlers.
+    const onSuccess = () => {
+      alert("Sharing result successful.");
+    };
+    const onError = () => {
+      alert("Sharing result unsuccessful.");
+    };
+
+    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError); // Cordova plugin execution.
   }, this);
 
   // Add home button image.
@@ -133,7 +150,7 @@ export default class GameOverScene extends Phaser.Scene {
     'uiicons',
     "home.png"
     );
-    
+
   this.homeButton.setScale(scalePercX, scalePercY);
   this.homeButtonIcon.setScale(scalePercX, scalePercY);
   this.homeButton.setInteractive();

@@ -1,0 +1,7 @@
+{
+    "Social.framework": 1,
+    "MessageUI.framework": 1,
+    "SafariServices.framework": 2,
+    "StoreKit.framework": 1,
+    "AppTrackingTransparency.framework": 1
+}
