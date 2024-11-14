@@ -80,6 +80,7 @@ export default class MainScene extends Phaser.Scene {
     );
 
     localStorage.scoreRate = localStorage.scoreRate || 1; // Initialize scoreRate.
+    localStorage.score = 0;
   }
 
   /**

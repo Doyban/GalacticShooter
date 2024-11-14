@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "586098A43CB57868F2266C393FFE00F4"
-               BuildableName = "Pods_GalacticShooter.framework"
+               BuildableName = "libPods-GalacticShooter.a"
                BlueprintName = "Pods-GalacticShooter"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

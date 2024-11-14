@@ -1,88 +1,38 @@
-import AppOpenAd from './app-open'
-import BannerAd, { BannerAdOptions } from './banner'
-import InterstitialAd from './interstitial'
-import NativeAd, { NativeAdOptions } from './native'
-import RewardedAd, {
-  RewardedAdOptions,
-  ServerSideVerificationOptions,
-} from './rewarded'
-import RewardedInterstitialAd, {
-  RewardedInterstitialAdOptions,
-} from './rewarded-interstitial'
-import {
-  AdMobConfig,
-  Events,
-  execAsync,
-  NativeActions,
-  Platforms,
-  RequestConfig,
-  start,
-  TrackingAuthorizationStatus,
-} from './shared'
+import * as ads from "./ads";
+import { type AdMobConfig, Events, execAsync } from "./common";
 
-export * from './api'
-export {
-  AppOpenAd,
-  BannerAd,
-  BannerAdOptions,
-  InterstitialAd,
-  NativeAd,
-  NativeAdOptions,
-  RewardedAd,
-  RewardedAdOptions,
-  RewardedInterstitialAd,
-  RewardedInterstitialAdOptions,
-  ServerSideVerificationOptions,
-}
+export * from "./ads";
+export * from "./common";
 
 export class AdMob {
-  public readonly AppOpenAd = AppOpenAd
-  public readonly BannerAd = BannerAd
-  public readonly InterstitialAd = InterstitialAd
-  public readonly NativeAd = NativeAd
-  public readonly RewardedAd = RewardedAd
-  public readonly RewardedInterstitialAd = RewardedInterstitialAd
+  public readonly AppOpenAd = ads.AppOpenAd;
+  public readonly BannerAd = ads.BannerAd;
+  public readonly InterstitialAd = ads.InterstitialAd;
+  public readonly NativeAd = ads.NativeAd;
+  public readonly RewardedAd = ads.RewardedAd;
+  public readonly RewardedInterstitialAd = ads.RewardedInterstitialAd;
+  public readonly WebViewAd = ads.WebViewAd;
 
-  public readonly Events = Events
-  public readonly TrackingAuthorizationStatus = TrackingAuthorizationStatus
+  public readonly Events = Events;
+
+  private _startPromise: ReturnType<typeof this._start> | undefined;
 
   configure(config: AdMobConfig) {
-    return execAsync(NativeActions.configure, [config])
-  }
-
-  public configRequest(requestConfig: RequestConfig) {
-    return execAsync(NativeActions.configRequest, [requestConfig])
-  }
-
-  public setAppMuted(value: boolean) {
-    return execAsync(NativeActions.setAppMuted, [value])
-  }
-
-  public setAppVolume(value: number) {
-    return execAsync(NativeActions.setAppVolume, [value])
+    return execAsync("configure", [config]);
   }
 
   public start() {
-    return start()
+    // biome-ignore lint/suspicious/noAssignInExpressions: ignore
+    return (this._startPromise ??= this._start());
   }
 
-  public async requestTrackingAuthorization(): Promise<
-    TrackingAuthorizationStatus | false
-  > {
-    if (cordova.platformId === Platforms.ios) {
-      const n = await execAsync(NativeActions.requestTrackingAuthorization)
-      if (n !== false) {
-        return TrackingAuthorizationStatus[
-          TrackingAuthorizationStatus[n as number]
-        ]
-      }
-    }
-    return false
+  private _start() {
+    return execAsync<{ version: string }>("start");
   }
 }
 
 declare global {
-  const admob: AdMob
+  const admob: AdMob;
 }
 
-export default AdMob
+export default AdMob;

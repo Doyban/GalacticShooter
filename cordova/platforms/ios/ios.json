@@ -37,10 +37,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"SocialSharing\"><param name=\"ios-package\" value=\"SocialSharing\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -61,11 +57,15 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"AMBPlugin\" /></feature>",
+              "xml": "<feature name=\"SafariViewController\"><param name=\"ios-package\" value=\"SafariViewController\" /></feature>",
               "count": 1
             },
             {
-              "xml": "<feature name=\"SafariViewController\"><param name=\"ios-package\" value=\"SafariViewController\" /></feature>",
+              "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"AMBPlugin\" /></feature>",
               "count": 1
             }
           ]
@@ -137,7 +137,7 @@
           ],
           "GADApplicationIdentifier": [
             {
-              "xml": "<string>ca-app-pub-xxx~yyy</string>",
+              "xml": "<string>ca-app-pub-4865595196880143~3817914054</string>",
               "count": 1
             }
           ],
@@ -153,10 +153,15 @@
               "count": 1
             }
           ],
-          "GADIntegrationManager": [],
+          "GADIntegrationManager": [
+            {
+              "xml": "<string>webview</string>",
+              "count": 1
+            }
+          ],
           "SKAdNetworkItems": [
             {
-              "xml": "<array><dict><key>SKAdNetworkIdentifier</key><string>cstr6suwn9.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4fzdc2evr5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2fnua5tdw4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ydx93a7ass.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>5a6flpkh64.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>p78axxw29g.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v72qych5uu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>c6k4g5qg8m.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>s39g8k73mm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qy4746246.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3sh42y64q3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>f38h382jlk.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>hs6bdukanm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>prcb7njmu6.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v4nxqhlyqp.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>wzmmz9fp6w.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>yclnxrl5pm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>t38b2kh725.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>7ug5zh24hu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>9rd848q2bz.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>n6fk4nfna4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>kbd757ywx3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>9t245vhmpl.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4468km3ulz.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2u9pt9hc89.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8s468mfl3y.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>av6w8kgt66.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>klf5c3l5u5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ppxm28t8ap.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>424m5254lk.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>uw77j35x4d.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>578prtvx9j.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4dzt52r2t5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>e5fvkxwrpn.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8c4e2ghe7u.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>zq492l623r.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qcr597p9d.skadnetwork</string></dict></array>",
+              "xml": "<array><dict><key>SKAdNetworkIdentifier</key><string>cstr6suwn9.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4fzdc2evr5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4pfyvq9l8r.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2fnua5tdw4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ydx93a7ass.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>5a6flpkh64.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>p78axxw29g.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v72qych5uu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ludvb6z3bs.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>cp8zw746q7.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3sh42y64q3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>c6k4g5qg8m.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>s39g8k73mm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qy4746246.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>f38h382jlk.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>hs6bdukanm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v4nxqhlyqp.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>wzmmz9fp6w.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>yclnxrl5pm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>t38b2kh725.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>7ug5zh24hu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>gta9lk7p23.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>vutu7akeur.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>y5ghdn5j9k.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>n6fk4nfna4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v9wttpbfk9.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>n38lu8286q.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>47vhws6wlr.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>kbd757ywx3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>9t245vhmpl.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>eh6m2bh4zr.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>a2p9lx4jpn.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>22mmun2rn5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4468km3ulz.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2u9pt9hc89.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8s468mfl3y.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>klf5c3l5u5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ppxm28t8ap.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ecpz2srf59.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>uw77j35x4d.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>pwa73g5rt2.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>mlmmfzh3r3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>578prtvx9j.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4dzt52r2t5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>e5fvkxwrpn.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8c4e2ghe7u.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>zq492l623r.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3rd42ekr43.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qcr597p9d.skadnetwork</string></dict></array>",
               "count": 1
             }
           ],
@@ -194,9 +199,6 @@
       "URL_SCHEME": "mycoolapp",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "com.doyban.galacticshooter"
-    },
     "es6-promise-plugin": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
@@ -220,13 +222,19 @@
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
+    "cordova-plugin-safariviewcontroller": {
+      "PACKAGE_NAME": "com.doyban.galacticshooter"
+    },
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "com.doyban.galacticshooter"
+    },
     "admob-plus-cordova": {
-      "APP_ID_IOS": "ca-app-pub-xxx~yyy",
+      "APP_ID_IOS": "ca-app-pub-4865595196880143~3817914054",
       "USAGE": "This identifier will be used to deliver personalized ads to you.",
       "DISABLESDKCRASHREPORTING": "false",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-safariviewcontroller": {
+    "cordova-plugin-androidx": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     }
   },
@@ -246,15 +254,6 @@
       "pluginId": "cordova-plugin-customurlscheme",
       "clobbers": [
         "window.plugins.launchmyapp"
-      ]
-    },
-    {
-      "id": "cordova-plugin-purchase.CdvPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "CdvPurchase",
-        "store"
       ]
     },
     {
@@ -304,26 +303,34 @@
       ]
     },
     {
-      "id": "admob-plus-cordova.AdMob",
-      "file": "plugins/admob-plus-cordova/www/admob.js",
-      "pluginId": "admob-plus-cordova",
-      "clobbers": [
-        "admob"
-      ]
-    },
-    {
       "id": "cordova-plugin-safariviewcontroller.SafariViewController",
       "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
       "pluginId": "cordova-plugin-safariviewcontroller",
       "clobbers": [
         "SafariViewController"
       ]
+    },
+    {
+      "id": "cordova-plugin-purchase.CdvPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "CdvPurchase",
+        "store"
+      ]
+    },
+    {
+      "id": "admob-plus-cordova.AdMob",
+      "file": "plugins/admob-plus-cordova/www/admob.js",
+      "pluginId": "admob-plus-cordova",
+      "clobbers": [
+        "admob"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-facebook-connect": "3.2.0",
     "cordova-plugin-customurlscheme": "5.0.2",
-    "cordova-plugin-purchase": "13.6.0",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.4",
     "cordova-plugin-buildinfo": "4.0.0",
@@ -331,7 +338,9 @@
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-inappbrowser": "6.0.0",
     "cordova-universal-links-plugin": "1.2.1",
-    "admob-plus-cordova": "1.28.0",
-    "cordova-plugin-safariviewcontroller": "2.0.0"
+    "cordova-plugin-safariviewcontroller": "2.0.0",
+    "cordova-plugin-purchase": "13.11.1",
+    "admob-plus-cordova": "2.0.0-alpha.18",
+    "cordova-plugin-androidx": "3.0.0"
   }
 }

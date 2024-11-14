@@ -9,10 +9,7 @@ namespace CdvPurchase {
         id: string;
 
         /**
-         * List of payment platforms the product is available on
-         *
-         * If you do not specify anything, the product is assumed to be available only on the
-         * default payment platform. (Apple AppStore on iOS, Google Play on Android)
+         * The payment platform the product is available on.
          */
         platform: Platform;
 
@@ -20,7 +17,7 @@ namespace CdvPurchase {
         type: ProductType;
 
         /**
-         * Name of the group your subscription product is a member of (default to "default").
+         * Name of the group your subscription product is a member of.
          *
          * If you don't set anything, all subscription will be members of the same group.
          */
@@ -28,6 +25,13 @@ namespace CdvPurchase {
     }
 
     export namespace Internal {
+
+        function isValidRegisteredProduct(product: any): product is IRegisterProduct{
+            if (typeof product !== 'object') return false;
+            return product.hasOwnProperty('platform')
+                && product.hasOwnProperty('id')
+                && product.hasOwnProperty('type');
+        }
 
         export class RegisteredProducts {
 
@@ -37,10 +41,19 @@ namespace CdvPurchase {
                 return this.list.find(rp => rp.platform === platform && rp.id === id);
             }
 
-            add(product: IRegisterProduct | IRegisterProduct[]) {
+            add(product: IRegisterProduct | IRegisterProduct[]): IError[] {
+                const errors: IError[] = [];
                 const products = Array.isArray(product) ? product : [product];
                 const newProducts = products.filter(p => !this.find(p.platform, p.id));
-                for (const p of newProducts) this.list.push(p);
+                for (const p of newProducts) {
+                    if (isValidRegisteredProduct(p))
+                        this.list.push(p);
+                    else
+                        errors.push(storeError(ErrorCode.LOAD,
+                            'Invalid parameter to "register", expected "id", "type" and "platform". '
+                            + 'Got: ' + JSON.stringify(p), null, null));
+                }
+                return errors;
             }
 
             byPlatform(): { platform: Platform; products: IRegisterProduct[]; }[] {

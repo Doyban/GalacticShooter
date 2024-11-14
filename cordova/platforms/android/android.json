@@ -41,10 +41,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"cc.fovea.PurchasePlugin\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
               "count": 1
             },
@@ -62,6 +58,10 @@
             },
             {
               "xml": "<feature name=\"UniversalLinks\"><param name=\"android-package\" value=\"com.nordnetab.cordova.ul.UniversalLinksPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"cc.fovea.PurchasePlugin\" /></feature>",
               "count": 1
             },
             {
@@ -105,11 +105,11 @@
               "count": 1
             },
             {
-              "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
               "count": 1
             },
             {
-              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
               "count": 1
             }
           ],
@@ -145,15 +145,27 @@
               "count": 1
             },
             {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-4865595196880143~1383322409\" />",
+              "count": 6
+            },
+            {
               "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:excludeFromRecents=\"true\" android:name=\"com.google.android.gms.ads.AdActivity\" android:noHistory=\"true\" />",
               "count": 1
             },
             {
-              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-4865595196880143~1383322409\" />",
-              "count": 5
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT\" android:value=\"true\" />",
+              "count": 1
             },
             {
-              "xml": "<meta-data android:name=\"com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT\" android:value=\"true\" />",
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING\" android:value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.flag.INTEGRATION_MANAGER\" android:value=\"webview\" />",
               "count": 1
             }
           ],
@@ -208,9 +220,6 @@
       "ANDROID_PATHPREFIX": "/",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "com.doyban.galacticshooter"
-    },
     "es6-promise-plugin": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
@@ -229,12 +238,15 @@
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "admob-plus-cordova": {
-      "APP_ID_ANDROID": "ca-app-pub-4865595196880143~1383322409",
-      "PLAY_SERVICES_VERSION": "20.6.0",
+    "cordova-plugin-safariviewcontroller": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-safariviewcontroller": {
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "com.doyban.galacticshooter"
+    },
+    "admob-plus-cordova": {
+      "APP_ID_ANDROID": "ca-app-pub-4865595196880143~1383322409",
+      "PLAY_SERVICES_VERSION": "23.0.0",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     }
   },
@@ -254,15 +266,6 @@
       "pluginId": "cordova-plugin-customurlscheme",
       "clobbers": [
         "window.plugins.launchmyapp"
-      ]
-    },
-    {
-      "id": "cordova-plugin-purchase.CdvPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store",
-        "CdvPurchase"
       ]
     },
     {
@@ -312,33 +315,42 @@
       ]
     },
     {
-      "id": "admob-plus-cordova.AdMob",
-      "file": "plugins/admob-plus-cordova/www/admob.js",
-      "pluginId": "admob-plus-cordova",
-      "clobbers": [
-        "admob"
-      ]
-    },
-    {
       "id": "cordova-plugin-safariviewcontroller.SafariViewController",
       "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
       "pluginId": "cordova-plugin-safariviewcontroller",
       "clobbers": [
         "SafariViewController"
       ]
+    },
+    {
+      "id": "cordova-plugin-purchase.CdvPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store",
+        "CdvPurchase"
+      ]
+    },
+    {
+      "id": "admob-plus-cordova.AdMob",
+      "file": "plugins/admob-plus-cordova/www/admob.js",
+      "pluginId": "admob-plus-cordova",
+      "clobbers": [
+        "admob"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-facebook-connect": "3.2.0",
     "cordova-plugin-customurlscheme": "5.0.2",
-    "cordova-plugin-purchase": "13.6.0",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.4",
     "cordova-plugin-buildinfo": "4.0.0",
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-inappbrowser": "6.0.0",
     "cordova-universal-links-plugin": "1.2.1",
-    "admob-plus-cordova": "1.28.0",
-    "cordova-plugin-safariviewcontroller": "2.0.0"
+    "cordova-plugin-safariviewcontroller": "2.0.0",
+    "cordova-plugin-purchase": "13.11.1",
+    "admob-plus-cordova": "2.0.0-alpha.18"
   }
 }

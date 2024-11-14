@@ -50,8 +50,8 @@ export class MobileControlsScene extends Phaser.Scene {
 
     // Define properties of joystick.
     this.joystick = this.plugins.get('rexvirtualjoystickplugin').add(this, {
-        x: 150,
-        y: this.game.config.height - 150,
+        x: 50,
+        y: this.game.config.height - 100,
         radius: 60,
         base: this.add.sprite(0, 0, 'joystick', 'base'),
         thumb: this.add.sprite(0, 0, 'joystick', 'stick'),
@@ -144,7 +144,7 @@ export class MobileControlsScene extends Phaser.Scene {
    * @returns {Object} button_fire - fire button object.
    */
   createFireButtton() {
-    let button_fire = this.add.sprite(this.game.config.width - 120, this.game.config.height - 130, 'joystick', 'button1-up'); // Load fire button.
+    let button_fire = this.add.sprite(this.game.config.width - 50, this.game.config.height - 100, 'joystick', 'button1-up'); // Load fire button.
 
     // Set up fire button properties.
     button_fire.setScale(1.4);

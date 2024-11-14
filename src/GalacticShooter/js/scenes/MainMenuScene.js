@@ -290,10 +290,8 @@ export default class MainMenuScene extends Phaser.Scene {
     // Sign in by redirecting to the sign-in page.
     signInWithRedirect(auth, new GoogleAuthProvider())
       .then(() => {
-        return getRedirectResult(auth);
-      })
-      .then(() => {
         alert('Authentication successful.')
+        return getRedirectResult(auth);
       }).catch(() => {
         alert('Authentication unsuccessful.')
       });

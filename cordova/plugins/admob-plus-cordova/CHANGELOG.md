@@ -3,6 +3,260 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.18](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.17...admob-plus-cordova@2.0.0-alpha.18) (2024-04-17)
+
+
+### Features
+
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 11.3 ([fec271b](https://github.com/admob-plus/admob-plus/commit/fec271bcb51362c29579b852123edb813bfb200d))
+
+
+
+
+
+# [2.0.0-alpha.17](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.16...admob-plus-cordova@2.0.0-alpha.17) (2024-04-12)
+
+
+### Bug Fixes
+
+* **cordova-native:** read display options from show() ([0f75921](https://github.com/admob-plus/admob-plus/commit/0f75921f4b1c32464b1df0b198d5b6402bfbbf03))
+* **cordova/android:** load native view providers on load ([#662](https://github.com/admob-plus/admob-plus/issues/662)) ([619aa88](https://github.com/admob-plus/admob-plus/commit/619aa88228eff11f5086b1e936d8068f82c02545))
+
+
+
+
+
+# [2.0.0-alpha.16](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.15...admob-plus-cordova@2.0.0-alpha.16) (2024-04-08)
+
+
+### Features
+
+* **cordova/android:** update PLAY_SERVICES_VERSION to 23.0.0 ([72f8f47](https://github.com/admob-plus/admob-plus/commit/72f8f47063270033025bf1d8a6b99e9a54cb25f5))
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 11.2.0 ([38425cb](https://github.com/admob-plus/admob-plus/commit/38425cbeea09ff62f44a221fce84e579886cdf67))
+
+
+
+
+
+# [2.0.0-alpha.15](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.14...admob-plus-cordova@2.0.0-alpha.15) (2024-03-05)
+
+
+### Bug Fixes
+
+* **cordova/ios:** update API ([da95f24](https://github.com/admob-plus/admob-plus/commit/da95f24b0ebabf708632a836630e450ef8a9b2a5))
+
+
+### Features
+
+* **cordova/android:** support publisherFirstPartyIDEnabled ([45c0e46](https://github.com/admob-plus/admob-plus/commit/45c0e46868fe67b89a67e763b4b42a08100f90dc))
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 11.0.1 ([b16a27f](https://github.com/admob-plus/admob-plus/commit/b16a27f83296f3e5a288f91eff551b473da10263))
+
+
+
+
+
+# [2.0.0-alpha.14](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.13...admob-plus-cordova@2.0.0-alpha.14) (2023-12-12)
+
+
+### Features
+
+* **cordova-consent/android:** implement new actions ([88111f6](https://github.com/admob-plus/admob-plus/commit/88111f62cf56e69420d075440d0dc3e64c5f259e))
+* **cordova/android:** update PLAY_SERVICES_VERSION to 22.5.0 ([9a0189a](https://github.com/admob-plus/admob-plus/commit/9a0189a827df9306cc82c03bf53e4ebad37b38a3))
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 10.13.0 ([90b7118](https://github.com/admob-plus/admob-plus/commit/90b71186557289de08a77520db34d1b4082021c5))
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 10.14.0 ([50e99bb](https://github.com/admob-plus/admob-plus/commit/50e99bb0b3973fdb3dc055c86cbf254272a0fa71))
+
+
+
+
+
+# [2.0.0-alpha.13](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.12...admob-plus-cordova@2.0.0-alpha.13) (2023-07-09)
+
+
+### Bug Fixes
+
+* **cordova/android:** clone map to remove item safely, [#592](https://github.com/admob-plus/admob-plus/issues/592) ([05bb250](https://github.com/admob-plus/admob-plus/commit/05bb25082b6b999d8b26717bacb52d0ac9a82bda))
+
+
+
+
+
+# [2.0.0-alpha.12](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.11...admob-plus-cordova@2.0.0-alpha.12) (2023-07-03)
+
+
+### Bug Fixes
+
+* **cordova/android:** check null value correctly ([be4593f](https://github.com/admob-plus/admob-plus/commit/be4593f61c67af00502ab5b6f822b841862fb300))
+* **cordova/android:** do not crash when appVolume is not set ([a372849](https://github.com/admob-plus/admob-plus/commit/a372849a0da6d0966209fad2ab8e2aa4d99ed558))
+* **cordova/android:** handle null correctly for optFloat() ([46d846d](https://github.com/admob-plus/admob-plus/commit/46d846dbd2caacbcca75da0437306b9defd48630))
+
+
+
+
+
+# [2.0.0-alpha.11](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.10...admob-plus-cordova@2.0.0-alpha.11) (2023-06-28)
+
+
+### Bug Fixes
+
+* **cordova/android:** remove ads item in main thread, [#592](https://github.com/admob-plus/admob-plus/issues/592) ([a5f53ca](https://github.com/admob-plus/admob-plus/commit/a5f53caa99a9604dc64ffb3196c6bc9ff6bd6aeb))
+
+
+### Features
+
+* **cordova/android:** load app open ad without orientation ([3cd6fd1](https://github.com/admob-plus/admob-plus/commit/3cd6fd13c83bd8fd46856a8beb74c0b8a2af2d6e))
+* **cordova:** remove AppOpenAdOrientation ([2e39dbb](https://github.com/admob-plus/admob-plus/commit/2e39dbb4d47fe173c6b279f1af4f1ad2c8e5b67d))
+
+
+
+
+
+# [2.0.0-alpha.10](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.9...admob-plus-cordova@2.0.0-alpha.10) (2023-06-21)
+
+
+### Bug Fixes
+
+* **cordova/android:** use thread-safe hash map, [#592](https://github.com/admob-plus/admob-plus/issues/592) ([e9d2b20](https://github.com/admob-plus/admob-plus/commit/e9d2b20cfce1633934901c97edc5660d25074a31))
+
+
+
+
+
+# [2.0.0-alpha.9](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.8...admob-plus-cordova@2.0.0-alpha.9) (2023-06-20)
+
+
+### Features
+
+* **cordova/android:** allow config sameAppKey ([dc16d80](https://github.com/admob-plus/admob-plus/commit/dc16d8066f944d642b007338f58862b6e8c95612))
+* **cordova/ios:** update Google-Mobile-Ads-SDK to 10.6.0 ([ade3e8a](https://github.com/admob-plus/admob-plus/commit/ade3e8a2cc0fb60e2225f0ea991cf6de8c96d85c))
+
+
+
+
+
+# [2.0.0-alpha.8](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.7...admob-plus-cordova@2.0.0-alpha.8) (2023-06-17)
+
+**Note:** Version bump only for package admob-plus-cordova
+
+
+
+
+
+# [2.0.0-alpha.7](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.6...admob-plus-cordova@2.0.0-alpha.7) (2023-06-14)
+
+
+### Bug Fixes
+
+* **cordova/android:** ignore exception, fix [#588](https://github.com/admob-plus/admob-plus/issues/588) ([e57f1a6](https://github.com/admob-plus/admob-plus/commit/e57f1a6feb39a1894f9370fe2d78a97cad72567b))
+* **cordova/android:** resolve on duplicate start() ([3a3da63](https://github.com/admob-plus/admob-plus/commit/3a3da63ee6294b403362bfdeb79bac949f222343))
+
+
+
+
+
+# [2.0.0-alpha.6](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.5...admob-plus-cordova@2.0.0-alpha.6) (2023-06-12)
+
+**Note:** Version bump only for package admob-plus-cordova
+
+
+
+
+
+# [2.0.0-alpha.5](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.4...admob-plus-cordova@2.0.0-alpha.5) (2023-06-11)
+
+
+### Features
+
+* **cordova-webview-ad/ios:** moved code from cordova/ios ([#586](https://github.com/admob-plus/admob-plus/issues/586)) ([2bccb1e](https://github.com/admob-plus/admob-plus/commit/2bccb1e61cea9b3c762f9695a982dfe556725a13))
+
+
+
+
+
+# [2.0.0-alpha.4](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.3...admob-plus-cordova@2.0.0-alpha.4) (2023-06-09)
+
+
+### Bug Fixes
+
+* **cordova/android:** iterate over values without cast, fix [#583](https://github.com/admob-plus/admob-plus/issues/583) ([c65c219](https://github.com/admob-plus/admob-plus/commit/c65c21987e191b51ac010d32aceef491e911597f))
+* **cordova:** some fixes for the WebView API for Ads ([#582](https://github.com/admob-plus/admob-plus/issues/582)) ([275d24b](https://github.com/admob-plus/admob-plus/commit/275d24bc6dafa4ebab4f652147912fe8b4d4b32c)), closes [EYALIN/community-admob-plus#6](https://github.com/EYALIN/community-admob-plus/issues/6)
+
+
+### Features
+
+* **cordova-webview-ad:** init plugin ([7555be0](https://github.com/admob-plus/admob-plus/commit/7555be003381d184ab5e8fe46f5bd9b5c1451ae6))
+* **cordova/android:** remove core Ad class ([b6a3e19](https://github.com/admob-plus/admob-plus/commit/b6a3e190e12559900754cd78379b84d6a3bdd1d5))
+* **cordova/android:** remove old config actions ([0007810](https://github.com/admob-plus/admob-plus/commit/000781079b79ac1afa10cae15ef46448c34caab1))
+* **cordova:** remove old config actions ([9a797ff](https://github.com/admob-plus/admob-plus/commit/9a797ffc6e007afdee3fcf0d13faac80a7b9424b))
+* **cordova:** remove requestTrackingAuthorization() ([c543bad](https://github.com/admob-plus/admob-plus/commit/c543bad98f76be892b6cef123d50ffb2ac529e5d))
+
+
+
+
+
+# [2.0.0-alpha.3](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.2...admob-plus-cordova@2.0.0-alpha.3) (2023-06-03)
+
+
+### Bug Fixes
+
+* **cordova/android:** set banner ad size ([b6bf954](https://github.com/admob-plus/admob-plus/commit/b6bf95412c55e48ee8507a5f73e188ac23b67d8a))
+
+
+### Features
+
+* **cordova/ios:** remove ad-type specific events ([fc5192e](https://github.com/admob-plus/admob-plus/commit/fc5192e51570e0bcf6f642753ac473c15506c51d))
+* **cordova/ios:** store ad id as String ([b597a0c](https://github.com/admob-plus/admob-plus/commit/b597a0cd0ef30f81b6baf3bf9b784405b5245721))
+* **cordova:** ignore ad create error ([86ab9c6](https://github.com/admob-plus/admob-plus/commit/86ab9c6a390c67415b8fc91559ab1fcfbb4631df))
+* **cordova:** remove ad-type specific events ([2513479](https://github.com/admob-plus/admob-plus/commit/25134795d2a09f76ee8993905f20016d6973f380))
+* **cordova:** set ad id default to adUnitId ([0273ed3](https://github.com/admob-plus/admob-plus/commit/0273ed3438cafcedd962da334dafadc36ff6485d))
+
+
+
+
+
+# [2.0.0-alpha.2](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.1...admob-plus-cordova@2.0.0-alpha.2) (2023-05-31)
+
+
+### Features
+
+* **cordova/android:** allow enable AdMobPlusOverrideUrlLoading without webview ad enabled ([c6bf09f](https://github.com/admob-plus/admob-plus/commit/c6bf09fa07d814e6a534464fe5029d1d3259e4d8))
+* **cordova/android:** optimize initialization and ad loading ([6e168d0](https://github.com/admob-plus/admob-plus/commit/6e168d048385f9f6399ed5cfd4a285afcfcdace8))
+* **cordova/android:** update PLAY_SERVICES_VERSION to 22.1.0 ([613f974](https://github.com/admob-plus/admob-plus/commit/613f9742dd83c9b756a0e3f4a2670a64b9be1bef))
+
+
+
+
+
+# [2.0.0-alpha.1](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@2.0.0-alpha.0...admob-plus-cordova@2.0.0-alpha.1) (2023-05-27)
+
+
+### Features
+
+* **cordova/android:** rename perference to AdMobPlusOverrideUrlLoading ([0027c69](https://github.com/admob-plus/admob-plus/commit/0027c697f537be3e456b102e141ff18c3254bae4))
+* **cordova:** support for WebView API for Ads on Android and iOS ([#539](https://github.com/admob-plus/admob-plus/issues/539)) ([6f2a9fc](https://github.com/admob-plus/admob-plus/commit/6f2a9fc26ba9eebe5ab00253f7c69855e4a84484))
+
+
+
+
+
+# [2.0.0-alpha.0](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@1.28.0...admob-plus-cordova@2.0.0-alpha.0) (2023-05-22)
+
+
+### Bug Fixes
+
+* **cordova:** install missing fs-extra type ([6f80de6](https://github.com/admob-plus/admob-plus/commit/6f80de6b0e5415e7cfda2dec3c5c44b37925602a))
+
+
+### Features
+
+* **cordova/android:** rewrite in kotlin ([2973d57](https://github.com/admob-plus/admob-plus/commit/2973d570f3f23e405efcfc1d0137511a5fc253a5))
+* **cordova/android:** update PLAY_SERVICES_VERSION to 22.0.0 ([d263f9c](https://github.com/admob-plus/admob-plus/commit/d263f9c73bad1f8d4dc5a802ddd98caf431e9f16))
+* **cordova/ios:** feat: update Google-Mobile-Ads-SDK to 10.5.0 ([07e29de](https://github.com/admob-plus/admob-plus/commit/07e29deeb6a41a4a1af174d17d6c2b76e7ba938d))
+* **cordova/ios:** update SKAdNetworkIdentifier ([c909bf0](https://github.com/admob-plus/admob-plus/commit/c909bf02484717bb4092493a5a68334923fd4f2b))
+
+
+
+
+
 # [1.28.0](https://github.com/admob-plus/admob-plus/compare/admob-plus-cordova@1.27.0...admob-plus-cordova@1.28.0) (2022-08-14)
 
 

@@ -45,7 +45,7 @@ export default class GameOverScene extends Phaser.Scene {
     };
 
     // Add title.
-    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, this.game.config.height * 0.1, 'space_font', 'GAME OVER', 88);
+    this.title = this.add.dynamicBitmapText(this.game.config.width * 0.5, 150, 'space_font', 'GAME OVER', 58 * ((scalePercX + scalePercY) * 0.5)); // Set title text properties.
     this.title.setOrigin(0.5); // Center title.
     this.title.visible = false; // Make title invisible.
 

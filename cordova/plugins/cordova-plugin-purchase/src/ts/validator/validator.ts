@@ -39,13 +39,13 @@ namespace CdvPurchase {
         }
 
         export interface ValidatorController {
-            get validator(): string | Validator.Function | Validator.Target | undefined;
-            get localReceipts(): Receipt[];
-            get adapters(): Adapters;
-            get validator_privacy_policy(): PrivacyPolicyItem | PrivacyPolicyItem[] | undefined;
+            validator: string | Validator.Function | Validator.Target | undefined;
+            localReceipts: Receipt[];
+            adapters: Adapters;
+            validator_privacy_policy: PrivacyPolicyItem | PrivacyPolicyItem[] | undefined;
             getApplicationUsername(): string | undefined;
-            get verifiedCallbacks(): Callbacks<VerifiedReceipt>;
-            get unverifiedCallbacks(): Callbacks<UnverifiedReceipt>;
+            verifiedCallbacks: Callbacks<VerifiedReceipt>;
+            unverifiedCallbacks: Callbacks<UnverifiedReceipt>;
             finish(receipt:VerifiedReceipt): Promise<void>;
         }
 
@@ -121,11 +121,26 @@ namespace CdvPurchase {
                         await adapter?.handleReceiptValidationResponse(receipt, payload);
                         if (payload.ok) {
                             const vr = this.addVerifiedReceipt(receipt, payload.data);
-                            this.controller.verifiedCallbacks.trigger(vr);
+                            this.controller.verifiedCallbacks.trigger(vr, 'payload_ok');
                             // this.verifiedCallbacks.trigger(data.receipt);
                         }
+                        else if (payload.code === ErrorCode.VALIDATOR_SUBSCRIPTION_EXPIRED) {
+                            // find the subscription in an existing verified receipt and mark as expired.
+                            const transactionId = receipt.lastTransaction()?.transactionId;
+                            const vr = transactionId ? this.verifiedReceipts.find(r => r.collection[0]?.transactionId === transactionId) : undefined;
+                            if (vr) {
+                                vr?.collection.forEach(col => {
+                                    if (col.transactionId === transactionId)
+                                        col.isExpired = true;
+                                });
+                                this.controller.verifiedCallbacks.trigger(vr, 'payload_expired');
+                            }
+                            else {
+                                this.controller.unverifiedCallbacks.trigger({receipt, payload}, 'no_verified_receipt');
+                            }
+                        }
                         else {
-                            this.controller.unverifiedCallbacks.trigger({receipt, payload});
+                            this.controller.unverifiedCallbacks.trigger({receipt, payload}, 'validator_error');
                         }
                     }
                     catch (err) {
@@ -134,7 +149,7 @@ namespace CdvPurchase {
                             ok: false,
                             code: ErrorCode.VERIFICATION_FAILED,
                             message: (err as Error).message,
-                        }});
+                        }}, 'validator_exception');
                     }
                 };
                 receipts.forEach(receipt => this.runOnReceipt(receipt, onResponse));
@@ -148,6 +163,18 @@ namespace CdvPurchase {
                 }
                 if (!this.controller.validator) {
                     this.incrResponsesCounter();
+                    // for backward compatibility, we consider that the receipt is verified.
+                    callback({
+                        receipt,
+                        payload: {
+                            ok: true,
+                            data: {
+                                id: receipt.transactions[0].transactionId,
+                                latest_receipt: true,
+                                transaction: { type: 'test' } // dummy data
+                            }
+                        }
+                    });
                     return;
                 }
                 const body = await this.buildRequestBody(receipt);

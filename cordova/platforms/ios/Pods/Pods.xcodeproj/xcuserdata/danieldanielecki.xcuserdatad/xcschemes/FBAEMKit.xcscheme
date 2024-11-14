@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "479BDBD165CD08E2159181E58CD2078F"
-               BuildableName = "FBAEMKit.framework"
+               BuildableName = "libFBAEMKit.a"
                BlueprintName = "FBAEMKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

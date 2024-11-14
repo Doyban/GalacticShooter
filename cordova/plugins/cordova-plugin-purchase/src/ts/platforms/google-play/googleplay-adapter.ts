@@ -12,18 +12,24 @@ namespace CdvPurchase {
             constructor(purchase: Bridge.Purchase, parentReceipt: Receipt, decorator: Internal.TransactionDecorator) {
                 super(Platform.GOOGLE_PLAY, parentReceipt, decorator);
                 this.nativePurchase = purchase;
-                this.refresh(purchase);
+                this.refresh(purchase, true);
             }
 
-            static toState(state: Bridge.PurchaseState, isAcknowledged: boolean): TransactionState {
+            static toState(fromConstructor: boolean, state: Bridge.PurchaseState, isAcknowledged: boolean, isConsumed: boolean): TransactionState {
                 switch(state) {
                     case Bridge.PurchaseState.PENDING:
                         return TransactionState.INITIATED;
                     case Bridge.PurchaseState.PURCHASED:
-                        // if (isAcknowledged)
-                        // return TransactionState.FINISHED; (this prevents receipt validation...)
-                        // else
-                        return TransactionState.APPROVED;
+                        // Note: we still want to validate acknowledged non-consumables and subscriptions,
+                        //       so we don't return APPROVED
+                        if (isConsumed)
+                            return TransactionState.FINISHED;
+                        else if (isAcknowledged)
+                            return TransactionState.APPROVED;
+                        else if (fromConstructor)
+                            return TransactionState.INITIATED;
+                        else
+                            return TransactionState.APPROVED;
                     case Bridge.PurchaseState.UNSPECIFIED_STATE:
                         return TransactionState.UNKNOWN_STATE;
                 }
@@ -32,16 +38,17 @@ namespace CdvPurchase {
             /**
              * Refresh the value in the transaction based on the native purchase update
              */
-            refresh(purchase: Bridge.Purchase) {
+            refresh(purchase: Bridge.Purchase, fromConstructor?: boolean) {
                 this.nativePurchase = purchase;
                 this.transactionId = `${purchase.orderId || purchase.purchaseToken}`;
                 this.purchaseId = `${purchase.purchaseToken}`;
                 this.products = purchase.productIds.map(productId => ({ id: productId }));
                 if (purchase.purchaseTime) this.purchaseDate = new Date(purchase.purchaseTime);
-                this.isPending = (purchase.getPurchaseState === Bridge.PurchaseState.PENDING);
+                this.isPending = (purchase.getPurchaseState === Bridge.PurchaseState.PENDING)
                 if (typeof purchase.acknowledged !== 'undefined') this.isAcknowledged = purchase.acknowledged;
+                if (typeof purchase.consumed !== 'undefined') this.isConsumed = purchase.consumed;
                 if (typeof purchase.autoRenewing !== 'undefined') this.renewalIntent = purchase.autoRenewing ? RenewalIntent.RENEW : RenewalIntent.LAPSE;
-                this.state = Transaction.toState(purchase.getPurchaseState, purchase.acknowledged);
+                this.state = Transaction.toState(fromConstructor ?? false, purchase.getPurchaseState, this.isAcknowledged ?? false, this.isConsumed ?? false);
             }
         }
 
@@ -79,6 +86,8 @@ namespace CdvPurchase {
             /** Has the adapter been successfully initialized */
             ready = false;
 
+            supportsParallelLoading = false;
+
             /** List of products managed by the GooglePlay adapter */
             get products(): GProduct[] { return this._products.products; }
             private _products: Products;
@@ -99,6 +108,7 @@ namespace CdvPurchase {
             private log: Logger;
 
             public autoRefreshIntervalMillis: number = 0;
+            static trimProductTitles: boolean = true;
 
             static _instance: Adapter;
             constructor(context: Internal.AdapterContext, autoRefreshIntervalMillis: number = 1000 * 3600 * 24) {
@@ -114,7 +124,7 @@ namespace CdvPurchase {
 
             /** Returns true on Android, the only platform supported by this adapter */
             get isSupported(): boolean {
-                return window.cordova.platformId === 'android';
+                return Utils.platformId() === 'android';
             }
 
             async initialize(): Promise<undefined | IError> {
@@ -148,7 +158,7 @@ namespace CdvPurchase {
 
                     const iabError = (err: string) => {
                         this.initialized = false;
-                        this.context.error(storeError(ErrorCode.SETUP, "Init failed - " + err));
+                        this.context.error(playStoreError(ErrorCode.SETUP, "Init failed - " + err, null));
                         this.retry.retry(() => this.initialize());
                     }
 
@@ -197,7 +207,7 @@ namespace CdvPurchase {
                                 return this._products.addProduct(registeredProduct, validProduct);
                             }
                             else {
-                                return storeError(ErrorCode.INVALID_PRODUCT_ID, `Product with id ${registeredProduct.id} not found.`);
+                                return playStoreError(ErrorCode.INVALID_PRODUCT_ID, `Product with id ${registeredProduct.id} not found.`, registeredProduct.id);
                             }
                         });
                         resolve(ret);
@@ -210,7 +220,7 @@ namespace CdvPurchase {
                         this.bridge.getAvailableProducts(inAppSkus, subsSkus, iabLoaded, (err: string) => {
                             // failed to load products, retry later.
                             this.retry.retry(go);
-                            this.context.error(storeError(ErrorCode.LOAD, 'Loading product info failed - ' + err + ' - retrying later...'))
+                            this.context.error(playStoreError(ErrorCode.LOAD, 'Loading product info failed - ' + err + ' - retrying later...', null))
                         });
                     }
 
@@ -229,22 +239,23 @@ namespace CdvPurchase {
                         }
                         resolve(undefined);
                     };
-                    const onFailure = (message: string, code?: ErrorCode) => resolve(storeError(code || ErrorCode.UNKNOWN, message));
-
                     const firstProduct = transaction.products[0];
+
                     if (!firstProduct)
-                        return resolve(storeError(ErrorCode.FINISH, 'Cannot finish a transaction with no product'));
+                        return resolve(playStoreError(ErrorCode.FINISH, 'Cannot finish a transaction with no product', null));
 
                     const product = this._products.getProduct(firstProduct.id);
                     if (!product)
-                        return resolve(storeError(ErrorCode.FINISH, 'Cannot finish transaction, unknown product ' + firstProduct.id));
+                        return resolve(playStoreError(ErrorCode.FINISH, 'Cannot finish transaction, unknown product ' + firstProduct.id, firstProduct.id));
 
                     const receipt = this._receipts.find(r => r.hasTransaction(transaction));
                     if (!receipt)
-                        return resolve(storeError(ErrorCode.FINISH, 'Cannot finish transaction, linked receipt not found.'));
+                        return resolve(playStoreError(ErrorCode.FINISH, 'Cannot finish transaction, linked receipt not found.', product.id));
 
                     if (!receipt.purchaseToken)
-                        return resolve(storeError(ErrorCode.FINISH, 'Cannot finish transaction, linked receipt contains no purchaseToken.'));
+                        return resolve(playStoreError(ErrorCode.FINISH, 'Cannot finish transaction, linked receipt contains no purchaseToken.', product.id));
+
+                    const onFailure = (message: string, code?: ErrorCode) => resolve(playStoreError(code || ErrorCode.UNKNOWN, message, product.id));
 
                     if (product.type === ProductType.NON_RENEWING_SUBSCRIPTION || product.type === ProductType.CONSUMABLE) {
                         if (!transaction.isConsumed)
@@ -263,6 +274,7 @@ namespace CdvPurchase {
             onPurchaseConsumed(purchase: Bridge.Purchase): void {
                 this.log.debug("onPurchaseConsumed: " + purchase.orderId);
                 purchase.acknowledged = true; // consumed is the equivalent of acknowledged for consumables
+                purchase.consumed = true;
                 this.onPurchasesUpdated([purchase]);
             }
 
@@ -280,6 +292,13 @@ namespace CdvPurchase {
                         const newReceipt = new Receipt(purchase, this.context.apiDecorators);
                         this.receipts.push(newReceipt);
                         this.context.listener.receiptsUpdated(Platform.GOOGLE_PLAY, [newReceipt]);
+                        if (newReceipt.transactions[0].state === TransactionState.INITIATED && !newReceipt.transactions[0].isPending) {
+                            // For compatibility, we set the state of "new" purchases to initiated from the constructor,
+                            // they'll got to "approved" when refreshed.
+                            // this way, users receive the "initiated" event, then "approved"
+                            newReceipt.refreshPurchase(purchase);
+                            this.context.listener.receiptsUpdated(Platform.GOOGLE_PLAY, [newReceipt]);
+                        }
                     }
                 });
             }
@@ -304,7 +323,7 @@ namespace CdvPurchase {
                     }
                     const failure = (message: string, code?: number) => {
                         this.log.warn('getPurchases failed: ' + message + ' (' + code + ')');
-                        setTimeout(() => resolve(storeError(code || ErrorCode.UNKNOWN, message)), 0);
+                        setTimeout(() => resolve(playStoreError(code || ErrorCode.UNKNOWN, message, null)), 0);
                     }
                     this.bridge.getPurchases(success, failure);
                 });
@@ -317,10 +336,10 @@ namespace CdvPurchase {
                     const buySuccess = () => resolve(undefined);
                     const buyFailed = (message: string, code?: ErrorCode): void => {
                         this.log.warn('Order failed: ' + JSON.stringify({message, code}));
-                        resolve(storeError(code ?? ErrorCode.UNKNOWN, message));
+                        resolve(playStoreError(code ?? ErrorCode.UNKNOWN, message, offer.productId));
                     };
                     if (offer.productType === ProductType.PAID_SUBSCRIPTION) {
-                        const idAndToken = offer.id; // offerId contains the productId and token (format productId@offerToken)
+                        const idAndToken = 'token' in offer ? offer.productId + '@' + offer.token : offer.productId;
                         // find if the user already owns a product in the same group
                         const oldPurchaseToken = this.findOldPurchaseToken(offer.productId, offer.productGroup);
                         if (oldPurchaseToken) {
@@ -408,7 +427,7 @@ namespace CdvPurchase {
             }
 
             async requestPayment(payment: PaymentRequest, additionalData?: CdvPurchase.AdditionalData): Promise<IError | Transaction | undefined> {
-                return storeError(ErrorCode.UNKNOWN, 'requestPayment not supported');
+                return playStoreError(ErrorCode.UNKNOWN, 'requestPayment not supported', null);
             }
 
             async manageSubscriptions(): Promise<IError | undefined> {
@@ -428,16 +447,19 @@ namespace CdvPurchase {
                 return supported.indexOf(functionality) >= 0;
             }
 
-            restorePurchases(): Promise<void> {
+            restorePurchases(): Promise<IError | undefined> {
                 return new Promise(resolve => {
-                    this.bridge.getPurchases(resolve, (message, code) => {
+                    this.bridge.getPurchases(() => resolve(undefined), (message, code) => {
                         this.log.warn('getPurchases() failed: ' + (code ?? 'ERROR') + ': ' + message);
-                        resolve();
+                        resolve(playStoreError(code ?? ErrorCode.UNKNOWN, message, null));
                     });
                 });
             }
         }
 
+        function playStoreError(code: ErrorCode, message: string, productId: string | null) {
+            return storeError(code, message, Platform.GOOGLE_PLAY, productId);
+        }
     }
 }
 

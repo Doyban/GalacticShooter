@@ -1,4 +1,5 @@
 import Entity from '../prefabs/Entity';
+import GUI from '../prefabs/GUI';
 import LaserPlayer from '../prefabs/LaserPlayer';
 
 /**
@@ -91,22 +92,17 @@ export default class Player extends Entity {
    * @returns {void}
    */
   showAdMobAds() {
-    let interstitial;
-
-    document.addEventListener('deviceready', async () => {
-      interstitial = new admob.InterstitialAd({
-        adUnitId: 'ca-app-pub-4865595196880143/2111764922',
-      })
-
-      await interstitial.load()
-      await interstitial.show()
-    }, false);
-
-    document.addEventListener('admob.ad.dismiss', async () => {
+    const interstitial = new admob.InterstitialAd({
+      adUnitId: "ca-app-pub-4865595196880143/2111764922",
+    });
+    interstitial.on("dismiss", () => {
       // Once a interstitial ad is shown, it cannot be shown again.
       // Starts loading the next interstitial ad as soon as it is dismissed.
-      await interstitial.load()
+      interstitial.load();
     });
+    return interstitial
+      .load()
+      .then(() => interstitial.show());
   }
 
   /**
@@ -129,7 +125,6 @@ export default class Player extends Entity {
       loop: false // Don't loop this state.
     });
 
-    localStorage.score = this.gui.getScore(); // Set score to possibly share it in game over popup.
     localStorage.scoreRate = 1; // Set to default scoreRate on game over.
   }
 

@@ -93,12 +93,6 @@ export class ShopScene extends Phaser.Scene {
         type: ProductType.CONSUMABLE,
       });
     }
-    // Prepare product.
-    store.register({
-      id: `com.doyban.galacticshooter.scorex${this.multiplier}`,
-      platform: Platform.GOOGLE_PLAY,
-      type: ProductType.CONSUMABLE,
-    });
   }
 
   /**

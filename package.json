@@ -1,6 +1,6 @@
 {
   "name": "GalacticShooter",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Minimalistic Galactic Shooting Game",
   "private": true,
   "scripts": {

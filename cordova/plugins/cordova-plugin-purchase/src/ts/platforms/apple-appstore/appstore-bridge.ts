@@ -301,6 +301,15 @@ namespace CdvPurchase {
                     // delete window.localStorage.sk_receiptForTransaction;
                 }
 
+                /**
+                 * Initialize the AppStore bridge.
+                 *
+                 * This calls the native "setup" method from the "InAppPurchase" Objective-C class.
+                 *
+                 * @param options Options for the bridge
+                 * @param success Called when the bridge is ready
+                 * @param error Called when the bridge failed to initialize
+                 */
                 init(options: Partial<BridgeOptions>, success: () => void, error: (code: ErrorCode, message: string) => void) {
                     this.options = {
                         error: options.error || noop,
@@ -336,10 +345,10 @@ namespace CdvPurchase {
                         setTimeout(() => this.processPendingTransactions(), 50);
                     };
 
-                    const setupFailed = () => {
+                    const setupFailed = (err: string) => {
                         log('setup failed');
                         // protectCall(this.options.error, 'options.error', ErrorCode.SETUP, 'Setup failed');
-                        protectCall(error, 'init.error', ErrorCode.SETUP, 'Setup failed');
+                        protectCall(error, 'init.error', ErrorCode.SETUP, 'Setup failed: ' + err);
                     };
 
                     exec('setup', [], setupOk, setupFailed);

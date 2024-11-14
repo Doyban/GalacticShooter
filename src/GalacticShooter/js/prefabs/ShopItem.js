@@ -53,17 +53,14 @@ export class ShopItem {
    * @description Listen on input down of ShopItem and perform necessary actions if it occurs.
    */
   onItemClicked() {
-    const that = this;
-
     // Purchase In-App Purchase (IAP) item.
     const store = CdvPurchase.store;
     const { Platform } = CdvPurchase; // shortcuts
 
-    store.when
+    store.when()
       .approved((transaction) => {
         // Add extra score and begin the game.
-        localStorage.scoreRate = parseInt(that.multiplier);
-        that.scene.scene.start("ShopScene"); // Start Shop scene.
+        localStorage.scoreRate = parseInt(this.multiplier);
 
         transaction.finish(); // Consume the transaction, so user can order the same item again (https://github.com/j3k0/cordova-plugin-purchase/issues/1459).
       });

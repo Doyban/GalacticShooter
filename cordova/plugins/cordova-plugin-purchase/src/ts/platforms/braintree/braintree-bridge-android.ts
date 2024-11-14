@@ -77,7 +77,7 @@ namespace CdvPurchase {
                     }
                     catch (err) {
                         this.log.warn("initialization failed: " + (err as Error)?.message);
-                        callback(storeError(ErrorCode.SETUP, 'Failed to initialize Braintree Android Bridge: ' + (err as Error)?.message));
+                        callback(braintreeError(ErrorCode.SETUP, 'Failed to initialize Braintree Android Bridge: ' + (err as Error)?.message));
                     }
                 }
 
@@ -107,7 +107,7 @@ namespace CdvPurchase {
 
                 /** Returns true on Android, the only platform supported by this Braintree bridge */
                 static isSupported() {
-                    return window.cordova.platformId === 'android';
+                    return Utils.platformId() === 'android';
                 }
 
                 async isApplePaySupported(): Promise<boolean> {
@@ -126,13 +126,13 @@ namespace CdvPurchase {
                                 const errCode = err.split("|")[0];
                                 const errMessage = err.split("|").slice(1).join('');
                                 if (errCode === "UserCanceledException") {
-                                    resolve(storeError(ErrorCode.PAYMENT_CANCELLED, errMessage));
+                                    resolve(braintreeError(ErrorCode.PAYMENT_CANCELLED, errMessage));
                                 }
                                 else if (errCode === "AuthorizationException") {
-                                    resolve(storeError(ErrorCode.UNAUTHORIZED_REQUEST_DATA, errMessage));
+                                    resolve(braintreeError(ErrorCode.UNAUTHORIZED_REQUEST_DATA, errMessage));
                                 }
                                 else {
-                                    resolve(storeError(ErrorCode.UNKNOWN, err));
+                                    resolve(braintreeError(ErrorCode.UNKNOWN, err));
                                 }
                             },
                             PLUGIN_ID, "launchDropIn", [dropInRequest]);
@@ -180,7 +180,7 @@ namespace CdvPurchase {
                  * @see https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller/1616192-canmakepayments
                  *
                 passKitCanMakePayments(callback: (value: boolean) => void, onFailure: Callback<string>) {
-                    switch (window.cordova.platformId) {
+                    switch (Utils.platformId()) {
                         case 'android':
                             return callback(true); // assuming we can always make payments on Android
                         case 'ios':

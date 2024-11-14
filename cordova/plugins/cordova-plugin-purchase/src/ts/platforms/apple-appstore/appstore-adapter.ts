@@ -28,7 +28,9 @@ namespace CdvPurchase {
          * @param requests List of discount offers to evaluate eligibility for
          * @param callback Get the response, a boolean for each request (matched by index).
          */
-        export type DiscountEligibilityDeterminer = (applicationReceipt: ApplicationReceipt, requests: DiscountEligibilityRequest[], callback: (response: boolean[]) => void) => void;
+        export type DiscountEligibilityDeterminer = ((applicationReceipt: ApplicationReceipt, requests: DiscountEligibilityRequest[], callback: (response: boolean[]) => void) => void) & {
+            cacheReceipt?: (receipt: VerifiedReceipt) => void;
+        };
 
         /**
          * Optional options for the AppleAppStore adapter
@@ -106,6 +108,7 @@ namespace CdvPurchase {
             pseudoReceipt: Receipt;
 
             get receipts(): Receipt[] {
+                if (!this.isSupported) return [];
                 return ((this._receipt ? [this._receipt] : []) as Receipt[])
                     .concat(this.pseudoReceipt ? this.pseudoReceipt : []);
             }
@@ -135,6 +138,9 @@ namespace CdvPurchase {
             /** True to auto-finish all transactions */
             autoFinish: boolean;
 
+            /** Callback called when the restore process is completed */
+            onRestoreCompleted?: (code: IError | undefined) => void;
+
             constructor(context: CdvPurchase.Internal.AdapterContext, options: AdapterOptions) {
                 this.context = context;
                 this.bridge = new Bridge.Bridge();
@@ -150,7 +156,7 @@ namespace CdvPurchase {
 
             /** Returns true on iOS, the only platform supported by this adapter */
             get isSupported(): boolean {
-                return window.cordova.platformId === 'ios';
+                return Utils.platformId() === 'ios';
             }
 
             private upsertTransactionInProgress(productId: string, state: TransactionState): Promise<SKTransaction> {
@@ -173,11 +179,13 @@ namespace CdvPurchase {
                 });
             }
 
+            /** Remove a transaction from the pseudo receipt */
             private removeTransactionInProgress(productId: string) {
                 const transactionId = virtualTransactionId(productId);
                 this.pseudoReceipt.transactions = this.pseudoReceipt.transactions.filter(t => t.transactionId !== transactionId);
             }
 
+            /** Insert or update a transaction in the pseudo receipt, based on data collected from the native side */
             private async upsertTransaction(productId: string, transactionId: string, state: TransactionState): Promise<SKTransaction> {
                 return new Promise(resolve => {
                     this.initializeAppReceipt(() => {
@@ -216,10 +224,12 @@ namespace CdvPurchase {
             /** Notify the store that the receipts have been updated */
             private _receiptsUpdated() {
                 if (this._receipt) {
+                    this.log.debug("receipt updated and ready.");
                     this.context.listener.receiptsUpdated(Platform.APPLE_APPSTORE, [this._receipt, this.pseudoReceipt]);
                     this.context.listener.receiptsReady(Platform.APPLE_APPSTORE);
                 }
                 else {
+                    this.log.debug("receipt updated.");
                     this.context.listener.receiptsUpdated(Platform.APPLE_APPSTORE, [this.pseudoReceipt]);
                 }
             }
@@ -251,7 +261,7 @@ namespace CdvPurchase {
                                 return;
                             }
                             else {
-                                this.context.error(storeError(code, message));
+                                this.context.error(appStoreError(code, message,options?.productId || null));
                             }
                         },
 
@@ -321,10 +331,18 @@ namespace CdvPurchase {
 
                         restoreFailed: (errorCode: ErrorCode) => {
                             this.log.info('restoreFailed: ' + errorCode);
+                            if (this.onRestoreCompleted) {
+                                this.onRestoreCompleted(appStoreError(errorCode, 'Restore purchases failed', null));
+                                this.onRestoreCompleted = undefined;
+                            }
                         },
 
                         restoreCompleted: () => {
                             this.log.info('restoreCompleted');
+                            if (this.onRestoreCompleted) {
+                                this.onRestoreCompleted(undefined);
+                                this.onRestoreCompleted = undefined;
+                            }
                         },
                     }, async () => {
                         this.log.info('bridge.init done');
@@ -332,10 +350,12 @@ namespace CdvPurchase {
                         resolve(undefined);
                     }, (code: ErrorCode, message: string) => {
                         this.log.info('bridge.init failed: ' + code + ' - ' + message);
-                        resolve(storeError(code, message));
+                        resolve(appStoreError(code, message, null));
                     });
                 });
             }
+
+            supportsParallelLoading = true;
 
             loadReceipts(): Promise<Receipt[]> {
                 return new Promise((resolve) => {
@@ -343,7 +363,7 @@ namespace CdvPurchase {
                         this.initializeAppReceipt(() => {
                             this.receiptsUpdated();
                             if (this._receipt) {
-                               resolve([this._receipt, this.pseudoReceipt]);
+                                resolve([this._receipt, this.pseudoReceipt]);
                             }
                             else {
                                 resolve([this.pseudoReceipt]);
@@ -397,7 +417,7 @@ namespace CdvPurchase {
                 if (!nativeData?.appStoreReceipt) {
                     this.log.warn('no appStoreReceipt');
                     this._appStoreReceiptLoading = false;
-                    callCallbacks(storeError(ErrorCode.REFRESH, 'No appStoreReceipt'));
+                    callCallbacks(appStoreError(ErrorCode.REFRESH, 'No appStoreReceipt', null));
                     return;
                 }
                 this._receipt = new SKApplicationReceipt(nativeData, this.needAppReceipt, this.context.apiDecorators);
@@ -419,11 +439,12 @@ namespace CdvPurchase {
             private async loadAppStoreReceipt(): Promise<undefined | ApplicationReceipt> {
                 let resolved = false;
                 return new Promise<undefined | ApplicationReceipt>(resolve => {
-                    if (this.bridge.appStoreReceipt?.appStoreReceipt) {
+                    if (this.bridge.appStoreReceipt?.appStoreReceipt && !this.forceReceiptReload) {
                         this.log.debug('using cached appstore receipt');
                         return resolve(this.bridge.appStoreReceipt);
                     }
                     this.log.debug('loading appstore receipt...');
+                    this.forceReceiptReload = false;
                     this.bridge.loadReceipts(receipt => {
                         this.log.debug('appstore receipt loaded');
                         if (!resolved) resolve(receipt);
@@ -449,7 +470,9 @@ namespace CdvPurchase {
             }
 
             private async loadEligibility(validProducts: Bridge.ValidProduct[]): Promise<Internal.DiscountEligibilities> {
+                this.log.debug('load eligibility: ' + JSON.stringify(validProducts));
                 if (!this.discountEligibilityDeterminer) {
+                    this.log.debug('No discount eligibility determiner, skipping...');
                     return new Internal.DiscountEligibilities([], []);
                 }
 
@@ -462,6 +485,15 @@ namespace CdvPurchase {
                             discountType: discount.type,
                         });
                     });
+                    if ((valid.discounts?.length ?? 0) === 0 && valid.introPrice) {
+                        // sometime apple returns the discounts in the deprecated "introductory" info
+                        // we create a special "discount" with the id "intro" to check for eligibility.
+                        eligibilityRequests.push({
+                            productId: valid.id,
+                            discountId: 'intro',
+                            discountType: 'Introductory',
+                        });
+                    }
                 });
 
                 if (eligibilityRequests.length > 0) {
@@ -498,25 +530,25 @@ namespace CdvPurchase {
                             this.log.info('bridge.loaded: ' + JSON.stringify({ validProducts, invalidProducts }));
                             this.addValidProducts(products, validProducts);
                             const eligibilities = await this.loadEligibility(validProducts);
-                            this.log.info('eligibilities ready.');
+                            this.log.info('eligibilities ready: ' + JSON.stringify(eligibilities));
                             // for any valid product that includes a discount, check the eligibility.
                             const ret = products.map(p => {
                                 if (invalidProducts.indexOf(p.id) >= 0) {
                                     this.log.debug(`${p.id} is invalid`);
-                                    return storeError(ErrorCode.INVALID_PRODUCT_ID, 'Product not found in AppStore. #400');
+                                    return appStoreError(ErrorCode.INVALID_PRODUCT_ID, 'Product not found in AppStore. #400', p.id);
                                 }
                                 else {
                                     const valid = validProducts.find(v => v.id === p.id);
                                     this.log.debug(`${p.id} is valid: ${JSON.stringify(valid)}`);
                                     if (!valid)
-                                        return storeError(ErrorCode.INVALID_PRODUCT_ID, 'Product not found in AppStore. #404');
+                                        return appStoreError(ErrorCode.INVALID_PRODUCT_ID, 'Product not found in AppStore. #404', p.id);
                                     let product = this.getProduct(p.id);
                                     if (product) {
                                         this.log.debug('refreshing existing product');
                                         product?.refresh(valid, this.context.apiDecorators, eligibilities);
                                     }
                                     else {
-                                        this.log.debug('registering existing product');
+                                        this.log.debug('registering new product');
                                         product = new SKProduct(valid, p, this.context.apiDecorators, eligibilities);
                                         this._products.push(product);
                                     }
@@ -527,7 +559,7 @@ namespace CdvPurchase {
                             resolve(ret);
                         },
                         (code: ErrorCode, message: string) => {
-                            return products.map(p => storeError(code, message));
+                            return products.map(p => appStoreError(code, message, null));
                         });
                 });
             }
@@ -545,23 +577,23 @@ namespace CdvPurchase {
                     const discountId = offer.id !== DEFAULT_OFFER_ID ? offer.id : undefined;
                     const discount = additionalData?.appStore?.discount;
                     if (discountId && !discount) {
-                        return callResolve(storeError(ErrorCode.MISSING_OFFER_PARAMS, 'Missing additionalData.appStore.discount when ordering a discount offer'));
+                        return callResolve(appStoreError(ErrorCode.MISSING_OFFER_PARAMS, 'Missing additionalData.appStore.discount when ordering a discount offer', offer.productId));
                     }
                     if (discountId && (discount?.id !== discountId)) {
-                        return callResolve(storeError(ErrorCode.INVALID_OFFER_IDENTIFIER, 'Offer identifier does not match additionalData.appStore.discount.id'));
+                        return callResolve(appStoreError(ErrorCode.INVALID_OFFER_IDENTIFIER, 'Offer identifier does not match additionalData.appStore.discount.id', offer.productId));
                     }
                     this.setPaymentMonitor((status: PaymentMonitorStatus, code?: ErrorCode, message?: string) => {
                         this.log.info('order.paymentMonitor => ' + status + ' ' + (code ?? '') + ' ' + (message ?? ''));
                         if (resolved) return;
                         switch (status) {
                             case 'cancelled':
-                                callResolve(storeError(code ?? ErrorCode.PAYMENT_CANCELLED, message ?? 'The user cancelled the order.'));
+                                callResolve(appStoreError(code ?? ErrorCode.PAYMENT_CANCELLED, message ?? 'The user cancelled the order.', offer.productId));
                                 break;
                             case 'failed':
                                 // note, "failed" might be triggered before "cancelled",
                                 // so we'll give some time to catch the "cancelled" event.
                                 setTimeout(() => {
-                                    callResolve(storeError(code ?? ErrorCode.PURCHASE, message ?? 'Purchase failed'));
+                                    callResolve(appStoreError(code ?? ErrorCode.PURCHASE, message ?? 'Purchase failed', offer.productId));
                                 }, 500);
                                 break;
                             case 'purchased':
@@ -576,7 +608,7 @@ namespace CdvPurchase {
                     }
                     const error = () => {
                         this.log.info('order.error');
-                        callResolve(storeError(ErrorCode.PURCHASE, 'Failed to place order'));
+                        callResolve(appStoreError(ErrorCode.PURCHASE, 'Failed to place order', offer.productId));
                     }
                     // When we switch AppStore user, the cached receipt isn't from the new user.
                     // so after a purchase, we want to make sure we're using the receipt from the logged in user.
@@ -606,7 +638,7 @@ namespace CdvPurchase {
                             success();
                         }
                         else {
-                            resolve(storeError(ErrorCode.FINISH, 'Failed to finish transaction'));
+                            resolve(appStoreError(ErrorCode.FINISH, 'Failed to finish transaction', transaction.products[0]?.id ?? null));
                         }
                     }
                     this.bridge.finish(transaction.transactionId, success, error);
@@ -620,7 +652,7 @@ namespace CdvPurchase {
                         resolve(receipt);
                     }
                     const error = (code: ErrorCode, message: string): void => {
-                        resolve(storeError(code, message));
+                        resolve(appStoreError(code, message, null));
                     }
                     this.bridge.refreshReceipts(success, error);
                 });
@@ -632,8 +664,8 @@ namespace CdvPurchase {
                 const skReceipt = receipt as SKApplicationReceipt;
                 let applicationReceipt = skReceipt.nativeData;
                 if (this.forceReceiptReload) {
-                    this.forceReceiptReload = false;
                     const nativeData = await this.loadAppStoreReceipt();
+                    this.forceReceiptReload = false;
                     if (nativeData) {
                         applicationReceipt = nativeData;
                         this.prepareReceipt(nativeData);
@@ -655,7 +687,7 @@ namespace CdvPurchase {
                     id: applicationReceipt.bundleIdentifier,
                     type: ProductType.APPLICATION,
                     // send all products and offers so validator get pricing information
-                    products: Object.values(this.validProducts).map(vp => new SKProduct(vp, vp, this.context.apiDecorators, { isEligible: () => true })),
+                    products: Utils.objectValues(this.validProducts).map(vp => new SKProduct(vp, vp, this.context.apiDecorators, { isEligible: () => true })),
                     transaction: {
                         type: 'ios-appstore',
                         id: transaction?.transactionId,
@@ -684,7 +716,7 @@ namespace CdvPurchase {
             }
 
             async requestPayment(payment: PaymentRequest, additionalData?: CdvPurchase.AdditionalData): Promise<IError | Transaction | undefined> {
-                return storeError(ErrorCode.UNKNOWN, 'requestPayment not supported');
+                return appStoreError(ErrorCode.UNKNOWN, 'requestPayment not supported', null);
             }
 
             async manageSubscriptions(): Promise<IError | undefined> {
@@ -705,15 +737,18 @@ namespace CdvPurchase {
                 return supported.indexOf(functionality) >= 0;
             }
 
-            restorePurchases(): Promise<void> {
-                return new Promise(resolve => {
+            restorePurchases(): Promise<IError | undefined> {
+                return new Promise<IError | undefined>(resolve => {
+                    this.onRestoreCompleted = (error) => {
+                        this.onRestoreCompleted = undefined;
+                        this.bridge.refreshReceipts(obj => {
+                            resolve(error)
+                        }, (code, message) => {
+                            resolve(error || appStoreError(code, message, null));
+                        });
+                    }
                     this.forceReceiptReload = true;
                     this.bridge.restore();
-                    this.bridge.refreshReceipts(obj => {
-                        resolve();
-                    }, (code, message) => {
-                        resolve();
-                    });
                 });
             }
 
@@ -722,6 +757,10 @@ namespace CdvPurchase {
                     this.bridge.presentCodeRedemptionSheet(resolve);
                 });
             }
+        }
+
+        function appStoreError(code: ErrorCode, message: string, productId: string | null) {
+            return storeError(code, message, Platform.APPLE_APPSTORE, productId);
         }
     }
 }

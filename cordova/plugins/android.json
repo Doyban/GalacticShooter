@@ -27,9 +27,6 @@
       "ANDROID_PATHPREFIX": "/",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "com.doyban.galacticshooter"
-    },
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
@@ -45,12 +42,15 @@
     "cordova-universal-links-plugin": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "admob-plus-cordova": {
-      "APP_ID_ANDROID": "ca-app-pub-4865595196880143~1383322409",
-      "PLAY_SERVICES_VERSION": "20.6.0",
+    "cordova-plugin-safariviewcontroller": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
-    "cordova-plugin-safariviewcontroller": {
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "com.doyban.galacticshooter"
+    },
+    "admob-plus-cordova": {
+      "APP_ID_ANDROID": "ca-app-pub-4865595196880143~1383322409",
+      "PLAY_SERVICES_VERSION": "23.0.0",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     }
   },

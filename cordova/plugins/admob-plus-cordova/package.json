@@ -1,31 +1,23 @@
 {
   "name": "admob-plus-cordova",
-  "version": "1.28.0",
-  "description": "Trustable Google AdMob Cordova Plugin",
+  "version": "2.0.0-alpha.18",
+  "description": "Trustable Google AdMob Cordova Plugin, successor of cordova-plugin-admob-free. Unlike some Cordova AdMob plugins, no ad-sharing, free to use. TypeScript friendly. Compatible with Ionic. admob-plus-cordova is one of the most popular Cordova AdMob plugins.",
   "main": "lib/index.js",
   "module": "esm/index.js",
-  "typings": "esm/index.d.ts",
+  "types": "esm/index.d.ts",
   "scripts": {
-    "prepublishOnly": "nx build cordova",
-    "version": "npx cordova-plus plugin version",
+    "prepublishOnly": "nx build",
+    "clean": "del esm lib www",
+    "version": "cordova-plus plugin version",
     "test": "cordova-plus plugin test"
   },
-  "dependencies": {
-    "fast-glob": "^3.2.11",
-    "fs-extra": "^10.1.0",
-    "plist": "^3.0.6",
-    "replace-in-file": "^6.3.5"
-  },
   "devDependencies": {
-    "@admob-plus-internal/rollup-config": "file:../../internal/rollup-config",
-    "@tsconfig/node10": "^1.0.9",
-    "@types/cordova": "^0.0.34",
-    "@types/plist": "^3.0.2",
-    "cordova": "11.0.0",
-    "cordova-plus": "^0.7.0",
-    "cordova-ts-hook": "^0.0.3",
-    "rollup": "^2.78.0",
-    "typescript": "~4.7.4"
+    "@types/cordova": "^11.0.3",
+    "cordova": "12.0.0",
+    "cordova-plus": "^0.9.4",
+    "del-cli": "^5.1.0",
+    "tslib": "^2.6.2",
+    "vitest": "^1.5.0"
   },
   "author": "Ratson",
   "license": "MIT",
@@ -47,19 +39,34 @@
   "keywords": [
     "cordova",
     "admob",
-    "plugin",
+    "admob-cordova",
+    "cordova-admob",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
+    "cordova-plugin",
+    "ad",
+    "admob-plus",
+    "admob-plus-cordova",
+    "cordova-plugin-admob-free",
+    "google-admob",
     "monetization",
     "typescript"
   ],
+  "source": {
+    "coverage": {
+      "include": [
+        "src/www/**/*.ts"
+      ]
+    }
+  },
   "cordova": {
     "id": "admob-plus-cordova",
     "platforms": [
       "android",
+      "browser",
       "ios"
     ]
   },
-  "gitHead": "e83e5c31c05dfbc06f001839ea5f1a4072325701"
+  "gitHead": "84e888a8dbf287224cc2b76c8f61aa7dd3cfead2"
 }

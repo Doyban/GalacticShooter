@@ -28,14 +28,6 @@
       "URL_SCHEME": "com.doyban.galacticshooter"
     }
   },
-  "cordova-plugin-purchase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-purchase"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-x-socialsharing": {
     "source": {
       "type": "registry",
@@ -84,18 +76,39 @@
     "is_top_level": true,
     "variables": {}
   },
-  "admob-plus-cordova": {
-    "source": {
-      "type": "registry",
-      "id": "admob-plus-cordova@1.28.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-safariviewcontroller": {
     "source": {
       "type": "registry",
       "id": "cordova-plugin-safariviewcontroller"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-purchase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-purchase"
+    },
+    "is_top_level": true,
+    "variables": {
+      "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6olW2chhUqj4RG0Ye0w4KVUAVjEFv84hEGxvsfOAvuYH1Ey9Wi/DhshF3dA78Z9rJkyo0Y+Ie6RifagJCjryet4Gdby3AcQ/hPXCAR7saAvuUYmHKnhI0hreC1/Rh79GvI56DG+W1QXtszn7m02zF09kdr+krIqqr1C0kesc6VS4akusnxB6v/0r2GQpmvUDqwADal4eHayYGnp7orXfUGA7G710hx9aaDezFmPTuVu3emCJ4ZJMtSJM6923z52TzgE+kwUNoKzVWoNCGQu89p1+pbkc7A6eLs/jI88JHj9FxG3MLaHziyIGkTaWG0jvBwnez72XY+wuf1xm8fpnZQIDAQAB"
+    }
+  },
+  "admob-plus-cordova": {
+    "source": {
+      "type": "registry",
+      "id": "admob-plus-cordova@2.0.0-alpha.18"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID_ANDROID": "ca-app-pub-4865595196880143~1383322409",
+      "APP_ID_IOS": "ca-app-pub-4865595196880143~3817914054"
+    }
+  },
+  "cordova-plugin-androidx": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-androidx"
     },
     "is_top_level": true,
     "variables": {}

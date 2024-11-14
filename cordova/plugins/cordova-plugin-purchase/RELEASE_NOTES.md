@@ -1,5 +1,246 @@
 # Release Notes - Cordova Plugin Purchase
 
+## 13.11
+
+### 13.11.1
+
+#### Fix running from browser with Capacitor
+
+Add `Utils.platformId()` helper function to get rid of an error when running a Capacitor app in a browser.
+
+Ref issue #1566
+
+### 13.11.0
+
+#### Upgrade to Google Play Billing library 7.0.0
+
+It's a backward compatible update, main visible change is the ProrationMode being renamed ReplacementMode (but the plugin kept the old enum and fields for compatibility).
+
+## 13.10
+
+### 13.10.4
+
+#### Fix build issue on android
+
+Java compiler started complaining about an implicit parameter. This patch fixes it.
+
+Ref issue #1564
+
+### 13.10.3
+
+#### Fix issue when a callback is null or undefined
+
+Ref issue #1557
+
+### 13.10.2
+
+#### Add `validationDate` to verified receipts
+
+`validationDate` can be set server side (the validation request response), to provide a more reliable clock time than the device's when needed.
+
+### 13.10.1
+
+#### Fix store.initialize() when passed a single value
+
+`store.initialize()` was supposed to work when passed a single value instead of an array. It turns out there was a regression, fixed with this release.
+
+#### Add store.when().initiated(transaction)
+
+Allows monitoring `INITIATED` (new) transactions.
+
+```ts
+store.when().initiated(transaction => {
+  // a new transaction has been initiated.
+});
+```
+
+### 13.10.0
+
+#### (googleplay) Add "isConsumed" to consumed transactions
+
+Local Google Play transaction now contain `isConsumed`, which is the same as `isAcknowledged`, but only set for consumable products.
+
+#### Make it easier to debug callback calls
+
+It's now possible to add a name to callbacks registered with "store.when()"
+
+When callbacks are triggered, the reason is logged to the console.
+
+#### Prevent instanciating CdvPurchase.store twice
+
+So when ionic packages the plugin with the app code, no double instantiations of the plugin is performed.
+
+## 13.9.0
+
+#### (appstore) store.restorePurchases() return potential errors
+
+The return value for `store.restorePurchases()` has been changed from `Promise<void>` to `Promise<IError|undefined>`.
+
+You can now inspect the value returned to figure out if processing complete with or without errors.
+
+#### (appstore) Fix forceReceiptReload
+
+In certain conditions (calls to `order` and `restorePurchases`), the AppStore adapter wants to force a refresh of the application receipt. This fix prevents it from returning the version cached in memory.
+
+## 13.8
+
+### 13.8.6
+
+#### Add CdvPurchase.Utils.platformName()
+
+Convert `CdvPurchase.Platform` enum values to a more user friendly version.
+
+Usage:
+
+```ts
+console.log(CdvPurchase.Utils.platformName(myTransaction.platform));
+
+// returns "App Store" or "Google Play" or "Braintree", ....
+```
+
+#### Increase expiry monitor's grace period on Google Play
+
+The 10 seconds wait before refreshing an expired subscription on Google Play wasn't enough: increased to 30 seconds.
+
+Ref #1468
+
+### 13.8.5
+
+Fixes for Apple AppStore's introductory periods and
+subscription renewals.
+
+#### Load products and receipts in parallel on Apple
+
+This solves the issue with processing the eligibility of
+introductory periods.
+
+#### Increase grace period for Apple subscription before refresh
+
+After observing that Apple sometime needs more than a
+minute before the API returns the subscription renewal
+transaction, we increased the local grace period (time
+before refresh) to 90 seconds.
+
+```ts
+CdvPurchase.Internal.ExpiryMonitor.GRACE_PERIOD_MS[Platform.APPLE_APPSTORE] = 90000;
+```
+
+### 13.8.4
+
+#### Trim product titles on Google Play
+
+Google Play returns the app name in parenthesis in product titles. The plugin
+now automatically trims it from the app name.
+
+This behavior can be disabled by setting:
+
+```ts
+CdvPurchase.GooglePlay.Adapter.trimProductTitles = false
+```
+
+#### Automatically re-validate just-expired subscriptions
+
+The plugin will now monitor active subscripion purchases (as returned by a
+receipt validation service) and re-validate the receipt automatically when the
+subscription expires or renews.
+
+You can customize the expiry monitor (which should rarely be needed):
+
+```ts
+// interval between checks in milliseconds
+CdvPurchase.Internal.ExpiryMonitor.INTERVAL_MS = 10000; // default: 10s
+
+// extra time before a subscription is considered expired (when re-validating
+// too early, sometime the new transaction isn't available yet).
+CdvPurchase.Internal.ExpiryMonitor.GRACE_PERIOD_MS = 10000; // default: 10s
+```
+
+#### Add expiry date to Test Adapter's subscription
+
+The expiry date was missing from the test product:
+
+```ts
+CdvPurchase.Test.testProducts.PAID_SUBSCRIPTION
+```
+
+### 13.8.3
+
+Fix npm package.
+
+### 13.8.2
+
+#### store.applicationUsername can return `undefined`
+
+If no user is logged in, you `applicationUsername` function can return
+undefined.
+
+#### Add "productId" and "platform" to Error objects
+
+All errors now include the "platform" and "productId" field (when applicable),
+to get more context.
+
+### 13.8.1
+
+#### Fix AppStore eligibility determination of intro period
+
+In the case where the StoreKit SDK doesn't return a "discounts" array,
+determining the eligility of the intro period using iaptic was not functional.
+
+### 13.8.0
+
+#### Upgrade to Google Play Billing library 5.2.1
+
+Adds access to offer and base plan identifiers.
+
+#### Handle validator answer with code `VALIDATOR_SUBSCRIPTION_EXPIRED`
+
+For backward compatibility, the validator also support responses with a 6778003
+error code (expired) when the validated transaction is expired.
+
+#### Fix: AppStore adapter should only return a localReceipt on iOS
+
+A dummy appstore receipt was listed on other platforms, this is fixed.
+
+#### Prevent various issues
+
+**Prevent double calls to approved callbacks**
+
+Make sure `.approved()` is only called once during a small time frame.
+
+**Skip quick successive calls to store.update()**
+
+The update will be performed only if `store.update()` or `store.initialize()`
+was called less than `store.minTimeBetweenUpdates` milliseconds.
+
+This make it safer to always call `store.update()` when entering the app's
+Store screen.
+
+**Block double callback registrations**
+
+Throw an error when attempting the re-register an existing callback for a given
+event handler. This is indicative of initialization code being run more than
+once.
+
+## 13.7.0
+
+#### Fix AppStore introctory prices
+
+Fix a regression with introctory prices on iOS. Unclear when this happened,
+according to Apple documentation, the "discounts" array should contain the
+introctory prices, but it turns out it does not anymore.
+
+#### Set ES6 as minimal javascript version
+
+Down from ES2015, for broader compatibility.
+
+#### Ensure verify() resolves even if there's no validator
+
+Some user do not specify a receipt validator but want to call
+"transaction.verify()" (for example app building frameworks).
+
+This changes makes sure the behavior gets back like it used to be in earlier
+versions of the plugin.
+
 ## 13.6
 
 ### 13.6.0

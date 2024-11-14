@@ -45,12 +45,15 @@
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
     "admob-plus-cordova": {
-      "APP_ID_IOS": "ca-app-pub-xxx~yyy",
+      "APP_ID_IOS": "ca-app-pub-4865595196880143~3817914054",
       "USAGE": "This identifier will be used to deliver personalized ads to you.",
       "DISABLESDKCRASHREPORTING": "false",
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     },
     "cordova-plugin-safariviewcontroller": {
+      "PACKAGE_NAME": "com.doyban.galacticshooter"
+    },
+    "cordova-plugin-androidx": {
       "PACKAGE_NAME": "com.doyban.galacticshooter"
     }
   },

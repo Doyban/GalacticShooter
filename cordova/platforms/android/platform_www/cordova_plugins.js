@@ -17,15 +17,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-purchase.CdvPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store",
-        "CdvPurchase"
-      ]
-    },
-    {
       "id": "es6-promise-plugin.Promise",
       "file": "plugins/es6-promise-plugin/www/promise.js",
       "pluginId": "es6-promise-plugin",
@@ -72,33 +63,42 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "admob-plus-cordova.AdMob",
-      "file": "plugins/admob-plus-cordova/www/admob.js",
-      "pluginId": "admob-plus-cordova",
-      "clobbers": [
-        "admob"
-      ]
-    },
-    {
       "id": "cordova-plugin-safariviewcontroller.SafariViewController",
       "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
       "pluginId": "cordova-plugin-safariviewcontroller",
       "clobbers": [
         "SafariViewController"
       ]
+    },
+    {
+      "id": "cordova-plugin-purchase.CdvPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store",
+        "CdvPurchase"
+      ]
+    },
+    {
+      "id": "admob-plus-cordova.AdMob",
+      "file": "plugins/admob-plus-cordova/www/admob.js",
+      "pluginId": "admob-plus-cordova",
+      "clobbers": [
+        "admob"
+      ]
     }
   ];
   module.exports.metadata = {
     "cordova-plugin-facebook-connect": "3.2.0",
     "cordova-plugin-customurlscheme": "5.0.2",
-    "cordova-plugin-purchase": "13.6.0",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.4",
     "cordova-plugin-buildinfo": "4.0.0",
     "cordova-plugin-browsertab": "0.2.0",
     "cordova-plugin-inappbrowser": "6.0.0",
     "cordova-universal-links-plugin": "1.2.1",
-    "admob-plus-cordova": "1.28.0",
-    "cordova-plugin-safariviewcontroller": "2.0.0"
+    "cordova-plugin-safariviewcontroller": "2.0.0",
+    "cordova-plugin-purchase": "13.11.1",
+    "admob-plus-cordova": "2.0.0-alpha.18"
   };
 });

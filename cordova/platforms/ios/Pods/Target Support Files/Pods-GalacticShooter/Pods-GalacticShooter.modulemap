@@ -1,4 +1,4 @@
-framework module Pods_GalacticShooter {
+module Pods_GalacticShooter {
   umbrella header "Pods-GalacticShooter-umbrella.h"
 
   export *

@@ -7,5 +7,5 @@ target 'GalacticShooter' do
 	pod 'FBSDKCoreKit', '11.1.0'
 	pod 'FBSDKLoginKit', '11.1.0'
 	pod 'FBSDKShareKit', '11.1.0'
-	pod 'Google-Mobile-Ads-SDK', '~> 8.13.0'
+	pod 'Google-Mobile-Ads-SDK', '~> 11.3.0'
 end

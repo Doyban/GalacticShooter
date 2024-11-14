@@ -213,6 +213,8 @@ namespace CdvPurchase {
                 return IosBridge.Bridge.isSupported() || AndroidBridge.Bridge.isSupported();
             }
 
+            supportsParallelLoading = false;
+
             /**
              * Initialize the Braintree Adapter.
              */
@@ -227,7 +229,7 @@ namespace CdvPurchase {
                             else if (this.options.clientTokenProvider)
                                 this.options.clientTokenProvider(callback);
                             else
-                                callback(storeError(ErrorCode.CLIENT_INVALID, 'Braintree iOS Bridge requires a clientTokenProvider or tokenizationKey'));
+                                callback(braintreeError(ErrorCode.CLIENT_INVALID, 'Braintree iOS Bridge requires a clientTokenProvider or tokenizationKey'));
                         }, this.options.applePay);
                         this.iosBridge.initialize(this.context, resolve);
                     }
@@ -251,7 +253,7 @@ namespace CdvPurchase {
             }
 
             async loadProducts(products: IRegisterProduct[]): Promise<(Product | IError)[]> {
-                return products.map(p => storeError(ErrorCode.PRODUCT_NOT_AVAILABLE, 'N/A'));
+                return products.map(p => braintreeError(ErrorCode.PRODUCT_NOT_AVAILABLE, 'N/A'));
             }
 
             async loadReceipts(): Promise<Receipt[]> {
@@ -260,7 +262,7 @@ namespace CdvPurchase {
             }
 
             async order(offer: Offer): Promise<undefined | IError> {
-                return storeError(ErrorCode.UNKNOWN, 'N/A: Not implemented with Braintree');
+                return braintreeError(ErrorCode.UNKNOWN, 'N/A: Not implemented with Braintree');
             }
 
             async finish(transaction: Transaction): Promise<undefined | IError> {
@@ -296,7 +298,7 @@ namespace CdvPurchase {
             private async launchDropIn(paymentRequest: PaymentRequest, dropInRequest: DropIn.Request): Promise<DropIn.Result | IError> {
                 if (this.androidBridge) return this.androidBridge.launchDropIn(dropInRequest);
                 if (this.iosBridge) return this.iosBridge.launchDropIn(paymentRequest, dropInRequest);
-                return storeError(ErrorCode.PURCHASE, 'Braintree is not available');
+                return braintreeError(ErrorCode.PURCHASE, 'Braintree is not available');
             }
 
             async requestPayment(paymentRequest: PaymentRequest, additionalData?: CdvPurchase.AdditionalData): Promise<IError | Transaction | undefined> {
@@ -361,7 +363,7 @@ namespace CdvPurchase {
 
                 this.log.info("launchDropIn success: " + JSON.stringify({ paymentRequest, dropInResult }));
                 if (!dropInResult.paymentMethodNonce?.nonce) {
-                    return storeError(ErrorCode.BAD_RESPONSE, 'launchDropIn returned no paymentMethodNonce');
+                    return braintreeError(ErrorCode.BAD_RESPONSE, 'launchDropIn returned no paymentMethodNonce');
                 }
 
                 let receipt = this._receipts.find(r => r.dropInResult.paymentMethodNonce?.nonce === dropInResult.paymentMethodNonce?.nonce);
@@ -423,7 +425,8 @@ namespace CdvPurchase {
                 return functionality === 'requestPayment';
             }
 
-            async restorePurchases(): Promise<void> {
+            async restorePurchases(): Promise<IError | undefined> {
+                return undefined;
             }
         }
 
@@ -449,7 +452,7 @@ namespace CdvPurchase {
         const dropInResponseError = (log: Logger, response?: IError): (IError | undefined) => {
             if (!response) {
                 log.warn("launchDropIn failed: no response");
-                return storeError(ErrorCode.BAD_RESPONSE, 'Braintree failed to launch drop in');
+                return braintreeError(ErrorCode.BAD_RESPONSE, 'Braintree failed to launch drop in');
             }
             else {
                 // Failed
@@ -460,6 +463,10 @@ namespace CdvPurchase {
                 log.warn("launchDropIn failed: " + JSON.stringify(response));
                 return response;
             }
+        }
+
+        export function braintreeError(code: ErrorCode, message: string) {
+            return storeError(code, message, Platform.BRAINTREE, null);
         }
     }
 }

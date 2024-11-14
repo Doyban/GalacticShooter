@@ -1,29 +1,22 @@
-import AppOpenAd from './app-open';
-import BannerAd, { BannerAdOptions } from './banner';
-import InterstitialAd from './interstitial';
-import NativeAd, { NativeAdOptions } from './native';
-import RewardedAd, { RewardedAdOptions, ServerSideVerificationOptions } from './rewarded';
-import RewardedInterstitialAd, { RewardedInterstitialAdOptions } from './rewarded-interstitial';
-import { AdMobConfig, Events, RequestConfig, TrackingAuthorizationStatus } from './shared';
-export * from './api';
-export { AppOpenAd, BannerAd, BannerAdOptions, InterstitialAd, NativeAd, NativeAdOptions, RewardedAd, RewardedAdOptions, RewardedInterstitialAd, RewardedInterstitialAdOptions, ServerSideVerificationOptions, };
+import * as ads from "./ads";
+import { type AdMobConfig, Events } from "./common";
+export * from "./ads";
+export * from "./common";
 export declare class AdMob {
-    readonly AppOpenAd: typeof AppOpenAd;
-    readonly BannerAd: typeof BannerAd;
-    readonly InterstitialAd: typeof InterstitialAd;
-    readonly NativeAd: typeof NativeAd;
-    readonly RewardedAd: typeof RewardedAd;
-    readonly RewardedInterstitialAd: typeof RewardedInterstitialAd;
+    readonly AppOpenAd: typeof ads.AppOpenAd;
+    readonly BannerAd: typeof ads.BannerAd;
+    readonly InterstitialAd: typeof ads.InterstitialAd;
+    readonly NativeAd: typeof ads.NativeAd;
+    readonly RewardedAd: typeof ads.RewardedAd;
+    readonly RewardedInterstitialAd: typeof ads.RewardedInterstitialAd;
+    readonly WebViewAd: typeof ads.WebViewAd;
     readonly Events: typeof Events;
-    readonly TrackingAuthorizationStatus: typeof TrackingAuthorizationStatus;
+    private _startPromise;
     configure(config: AdMobConfig): Promise<unknown>;
-    configRequest(requestConfig: RequestConfig): Promise<unknown>;
-    setAppMuted(value: boolean): Promise<unknown>;
-    setAppVolume(value: number): Promise<unknown>;
     start(): Promise<{
         version: string;
     }>;
-    requestTrackingAuthorization(): Promise<TrackingAuthorizationStatus | false>;
+    private _start;
 }
 declare global {
     const admob: AdMob;

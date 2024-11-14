@@ -1,4 +1,4 @@
-framework module FBSDKCoreKit_Basics {
+module FBSDKCoreKit_Basics {
   umbrella header "FBSDKCoreKit_Basics-umbrella.h"
 
   export *

@@ -93,8 +93,9 @@ namespace CdvPurchase
                             }
                             return this.list.push(new Braintree.Adapter(context, po.options));
                         case Platform.TEST:
-                        default:
                             return this.list.push(new Test.Adapter(context));
+                        default:
+                            return;
                     }
                 });
             }
@@ -103,6 +104,9 @@ namespace CdvPurchase
              * Initialize some platform adapters.
              */
             async initialize(platforms: (Platform | PlatformWithOptions)[], context: AdapterContext): Promise<IError[]> {
+                if (typeof platforms === 'string') {
+                    platforms = [platforms];
+                }
                 const newPlatforms = platforms.map(p => typeof p === 'string' ? { platform: p } : p).filter(p => !this.find(p.platform)) as PlatformWithOptions[];
                 const log = context.log.child('Adapters');
                 log.info("Adding platforms: " + JSON.stringify(newPlatforms));
@@ -123,11 +127,23 @@ namespace CdvPurchase
                     if (initResult?.code) return initResult;
                     log.info(`${adapter.name} products: ${JSON.stringify(platformProducts)}`);
                     if (platformProducts.length === 0) return;
-                    const loadProductsResult = await adapter.loadProducts(platformProducts);
+                    let loadProductsResult: (IError|Product)[] = [];
+                    let loadReceiptsResult: Receipt[] = [];
+                    if (adapter.supportsParallelLoading) {
+                        [loadProductsResult, loadReceiptsResult] = await Promise.all([
+                            adapter.loadProducts(platformProducts),
+                            adapter.loadReceipts()
+                        ]);
+                    }
+                    else {
+                        loadProductsResult = await adapter.loadProducts(platformProducts);
+                        loadReceiptsResult = await adapter.loadReceipts();
+                    }
+                    // const loadProductsResult = await adapter.loadProducts(platformProducts);
                     log.info(`${adapter.name} products loaded: ${JSON.stringify(loadProductsResult)}`);
                     const loadedProducts = loadProductsResult.filter(p => p instanceof Product) as Product[];
                     context.listener.productsUpdated(platformToInit.platform, loadedProducts);
-                    const loadReceiptsResult = await adapter.loadReceipts();
+                    // const loadReceiptsResult = await adapter.loadReceipts();
                     log.info(`${adapter.name} receipts loaded: ${JSON.stringify(loadReceiptsResult)}`);
                     return loadProductsResult.filter(lr => 'code' in lr && 'message' in lr)[0] as (IError | undefined);
                 }));

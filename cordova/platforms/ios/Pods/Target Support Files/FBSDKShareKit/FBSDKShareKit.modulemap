@@ -1,4 +1,4 @@
-framework module FBSDKShareKit {
+module FBSDKShareKit {
   umbrella header "FBSDKShareKit-umbrella.h"
 
   export *

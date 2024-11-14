@@ -6,25 +6,13 @@
 
 Need professional help and support? [Contact Me](mailto:hoelt@fovea.cc).
 
-I dedicate a considerable amount of my free time to developing and maintaining
-this Cordova plugin, along with my other Open Source software. To help ensure
-this plugin is kept updated, new features are added and bugfixes are
-implemented quickly, please donate a couple of dollars (or a little more if you
-can stretch) as this will help me to afford to dedicate time to its
-maintenance. Please consider donating if you're using this plugin in an app
-that makes you money, if you're being paid to make the app, if you're asking
-for new features or priority bug fixes. Thank you!
-
- * [Patreon](https://www.patreon.com/join/2219243?)
- * [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7A4826SH6RJSE&source=url)
-
 ## Summary
 
 This plugin allows **In-App Purchases** to be made from **Cordova, Ionic and Capacitor** applications.
 
 It lets you handle in-app purchases on many platforms with a single codebase.
 
-This is a plugin for the **Apache Cordova** framework that provides an easy and flexible way to integrate **in-app purchases** into Cordova-based mobile applications, including popular frameworks such as **Ionic and PhoneGap**.. With this plugin, you can easily add support for in-app purchases of digital content, such as subscriptions, consumables, and non-consumables, using the store-specific purchase APIs provided by the major mobile platforms. The plugin also supports requesting payments through popular payment providers such as **Braintree**, allowing you to easily accept payments from your users.
+This is a plugin for the **Apache Cordova** framework that provides an easy and flexible way to integrate **in-app purchases** into Cordova-based mobile applications, including popular frameworks such as **Ionic and PhoneGap**. With this plugin, you can easily add support for in-app purchases of digital content, such as subscriptions, consumables, and non-consumables, using the store-specific purchase APIs provided by the major mobile platforms. The plugin also supports requesting payments through popular payment providers such as **Braintree**, allowing you to easily accept payments from your users.
 
 The Cordova-Plugin-Purchase plugin is designed to be easy to use and integrate into your Cordova app, and it provides a consistent API across all supported platforms, so you can focus on building your app without worrying about platform-specific differences. Whether you are building a subscription-based app, a freemium app, or any other app that requires in-app purchases, the Cordova-Plugin-Purchase plugin can help you get started quickly and easily.
 
@@ -38,7 +26,6 @@ The Cordova-Plugin-Purchase plugin is designed to be easy to use and integrate i
 | restore purchases | ✅ | ✅ | ✅ |
 | payment requests |   |   | ✅ |
 | [receipt validation](https://www.iaptic.com) | ✅ | ✅ | ✅ |
-
 
 ## Installation
 
@@ -75,13 +62,39 @@ Install <strong>cordova-plugin-advanced-http</strong> (click for details).
 When making receipt validation requests, the purchase plugin uses, by default, the browser's ajax capabilities. This sometime causes issues with CORS restriction. CORS also imposes an extra back-and-forth with the server (the CORS preflight request) to ensure the server allows for such request to be made. By installing the [advanced-http plugin](https://github.com/silkimen/cordova-plugin-advanced-http), you get rid of those issue and benefit from the extra feature of the the plugin, like advanced authentication option. Read the [advanced-http](https://github.com/silkimen/cordova-plugin-advanced-http) plugin documentation for details.
 </details>
 
+### Note for ionic 3
+
+Since version 13 of the plugin, it should be used **without** `@ionic-native/in-app-purchase-2`.
+
+ionic 3 doesn't support recent typescript notations, but the plugin can be used without typings by just declaring it:
+
+```ts
+declare var CdvPurchase: any
+```
+
 ### Note for Capacitor users
 
-Capacitor users can install this new version of the plugin without the help of the awesome-cordova-plugins wrapper. Just install the `cordova-plugin-purchase` module and `import "cordova-plugin-purchase"` in files where it's needed. (some user reported using `import "cordova-plugin-purchase/www/store.d"` to get it working).
+Capacitor users can install the latest version of the plugin without the help of the awesome-cordova-plugins wrapper. Just install the `cordova-plugin-purchase` module and `import "cordova-plugin-purchase"` in files where it's needed. (some user reported using `import "cordova-plugin-purchase/www/store.d"` to get it working).
 
 As with other plugins, you should wait for Capacitor `this.platform.ready()` before using the plugin.
 
-See [here](https://github.com/danielsogl/awesome-cordova-plugins/issues/4457) for some info.
+```ts
+import 'cordova-plugin-purchase';
+
+@Injectable()
+export class AppStoreService {
+
+  // DO NOT initialize to CdvPurchase.store here
+  store?: CdvPurchase.Store;
+
+  constructor() {
+    this.platform.ready().then(() => {
+      // MUST WAIT for Cordova to initialize before referencing CdvPurchase namespace
+      this.store = CdvPurchase.store
+    });
+  }
+}
+```
 
 ### Setup your Application
 
@@ -117,7 +130,9 @@ You'll have two main tasks to accomplish:
 
 For platform setup, the [wiki](https://github.com/j3k0/cordova-plugin-purchase/wiki/Home) is a good starting point.
 
-There's a specific page for the [version 13](./wiki/Version-13).
+There's a specific page for the [version 13](https://github.com/j3k0/cordova-plugin-purchase/wiki/Version-13).
+
+API documentation can be found here: [cordova-plugin-purchase API](https://www.iaptic.com/documentation/cordova-plugin-api/)
 
 ### Upgrading to Version 13
 
@@ -139,6 +154,11 @@ There's been some changes to the API with version 13 of the plugin. This documen
 
 For proper subscription support, you need a receipt validation server. You can
 implement your own or use [Iaptic's receipt validation service](https://www.iaptic.com).
+
+Here is a full example of a cordova application implementing subscriptions, with and without a backend server:
+
+- Client: https://github.com/j3k0/cordova-subscription-example
+- Server: https://github.com/iaptic/iaptic-example-nodejs-backend
 
 # Contribute
 
